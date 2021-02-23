@@ -18,6 +18,7 @@ class Jogo():
 
 
 
+
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()
                 if event.type == pygame.QUIT:
