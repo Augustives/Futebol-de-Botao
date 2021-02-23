@@ -27,7 +27,7 @@ class Jogo():
                         jogo_aberto = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if botao_voltar.mouse_sobre(pos):
-                        self.jogo_loop()
+                        jogo_aberto = False
 
             pygame.display.update()
             self.clock.tick(60)
