@@ -6,7 +6,7 @@ from BotaoMenu import Botao
 class Jogo():
     def __init__(self):
         pygame.init()
-        self.janela = pygame.display.set_mode((800, 600))
+        self.janela = pygame.display.set_mode((1400, 700))
         self.clock = pygame.time.Clock()
 
     def jogo_loop(self):
