@@ -9,7 +9,9 @@ class Botao:
 
     def desenha_botao(self, janela, outline=None):
         if outline:
+
             pygame.draw.rect(janela, outline, (self.x - 2, self.y - 2, self.largura + 4, self.altura + 4), 0)
+
 
         pygame.draw.rect(janela, self.cor, (self.x, self.y, self.largura, self.altura), 0)
 
@@ -25,3 +27,7 @@ class Botao:
                 return True
 
         return False
+
+
+
+

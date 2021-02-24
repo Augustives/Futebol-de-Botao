@@ -1,5 +1,5 @@
 
-class Campo:
+class Campo():
 
     def __init__(self):
-        pass
+        self.grama =

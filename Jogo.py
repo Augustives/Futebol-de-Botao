@@ -16,8 +16,19 @@ class Jogo():
             self.janela.fill((255, 255, 255))
             botao_voltar.desenha_botao(self.janela, (0,0,0))
 
+            grupo = pygame.sprite.Group()
+            avai1 = pygame.sprite.Sprite(grupo)
+            avai1.image = pygame.image.load('brasao_avai.png')
+            avai1.image = pygame.transform.scale(avai1.image, [80, 80])
+            pygame.sprite.collide_circle()
+            avai1.rect = pygame.Rect(50, 50, 80, 80)
 
+            fig1 = pygame.sprite.Sprite(grupo)
+            fig1.image = pygame.image.load('brasao_figueirence_.png')
+            fig1.image = pygame.transform.scale(fig1.image, [80, 80])
+            fig1.rect = pygame.Rect(200, 50, 80, 80)
 
+            grupo.draw(self.janela)
 
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()
