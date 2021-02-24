@@ -1,12 +1,12 @@
 import pygame
 
+
 class Campo():
 
     def __init__(self):
         pass
 
     def desenhar(self, janela):
-
         grupo = pygame.sprite.Group()
         gramado = pygame.sprite.Sprite(grupo)
         gramado.image = pygame.image.load('imagens/grama.png')
@@ -18,10 +18,14 @@ class Campo():
         pygame.draw.rect(janela, transparente, (450, 75, 850, 545), width=6)
         pygame.draw.rect(janela, transparente, (450, 220, 100, 260), width=6)
         pygame.draw.rect(janela, transparente, (1200, 220, 100, 260), width=6)
-        pygame.draw.circle(janela, transparente, (880, 350) , 120, width=6)
-        pygame.draw.line(janela, transparente, (880,75), (880,620), width=6)
-        pygame.draw.circle(janela, (255,255,255), (880, 350), 10,)
+        pygame.draw.circle(janela, transparente, (880, 350), 120, width=6)
+        pygame.draw.line(janela, transparente, (880, 75), (880, 620), width=6)
+        pygame.draw.circle(janela, (255, 255, 255), (880, 350), 10, )
 
 
+class Lado_do_campo():
+    def __init__(self):
+        self.esquerdo = [(500, 100), (500, 500), (790, 100), (790, 500), (650, 300), (460, 300)]
+        self.direito = [(1175, 100), (1175, 500), (890, 100), (890, 500), (1010, 300), (1260, 300)]
 
 

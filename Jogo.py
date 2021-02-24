@@ -1,9 +1,9 @@
 import pygame
 import sys
 from BotaoMenu import Botao
-from Campo import Campo
+from Campo import Campo, Lado_do_campo
 from Time import Time
-
+from Bola import Bola
 
 class Jogo():
     def __init__(self):
@@ -21,9 +21,14 @@ class Jogo():
             campo = Campo()
             campo.desenhar(self.janela)
 
+            time1 = Time('Figueirence', 'imagens/brasao_figueirence.png','imagens/brasao_figueirence_goleiro.png', Lado_do_campo().esquerdo)
+            time1.desenhar(self.janela)
 
-            time = Time(brasao='imagens/brasao_figueirence.png', nome='Figueirence')
-            time.desenhar(self.janela)
+            time2 = Time('Avai', 'imagens/brasao_avai.png', 'imagens/brasao_avai_goleiro.png', Lado_do_campo().direito)
+            time2.desenhar(self.janela)
+
+            bola = Bola((880,350))
+            bola.desenhar(self.janela)
 
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()
@@ -40,14 +45,12 @@ class Jogo():
             pygame.display.update()
             self.clock.tick(60)
 
-
-
     def menuPrincipal_loop(self):
         botao_start = Botao((155, 155, 0), 150, 225, 250, 100, "Start")
         botao_creditos = Botao((155, 155, 0), 150, 500, 250, 100, "Credits")
         while True:
             self.janela.fill((255, 0, 0))
-            botao_start.desenha_botao(self.janela,(0,0,0))
+            botao_start.desenha_botao(self.janela, (0, 0, 0))
             botao_creditos.desenha_botao(self.janela, (0, 0, 0))
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()
@@ -65,10 +68,8 @@ class Jogo():
                     if botao_creditos.mouse_sobre(pos):
                         self.creditos_loop()
 
-
             pygame.display.update()
             self.clock.tick(60)
-
 
     def creditos_loop(self):
         botao_voltar = Botao((155, 155, 0), 600, 575, 250, 100, "Voltar")
@@ -76,7 +77,6 @@ class Jogo():
         while credito_aberto:
             self.janela.fill((255, 255, 255))
             botao_voltar.desenha_botao(self.janela, (0, 0, 0))
-
 
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()
