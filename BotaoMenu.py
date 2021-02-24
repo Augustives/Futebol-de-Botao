@@ -1,8 +1,7 @@
 import pygame
 
 class Botao:
-    def __init__(self, cor, x, y, largura, altura, texto=''):
-        self.cor = cor
+    def __init__(self, x, y, largura, altura, texto=''):
         self.x, self.y = x, y
         self.largura, self.altura = largura, altura
         self.texto = texto
@@ -19,8 +18,7 @@ class Botao:
         if self.texto != '':
             font = pygame.font.Font('8-BIT.TTF', 30)
             text = font.render(self.texto, 1, (0, 0, 0))
-            janela.blit(text, (
-                self.x + (self.largura / 2 - text.get_width() / 2), (self.y-5) + (self.altura / 2 - text.get_height() / 2)))
+            janela.blit(text, (self.x + (self.largura / 2 - text.get_width() / 2), (self.y-5) + (self.altura / 2 - text.get_height() / 2)))
 
     def botao_hover(self, event, pos):
         if self.mouse_sobre(pos):
