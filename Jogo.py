@@ -12,16 +12,16 @@ class Jogo():
         pygame.init()
         self.janela = pygame.display.set_mode((1400, 700))
         self.clock = pygame.time.Clock()
-        pygame.display.set_caption("Futebol de Chernobyl")
-        icon = pygame.image.load('./imagens/nuclear.png')
+        pygame.display.set_caption("Futebol de Botao")
+        icon = pygame.image.load('./imagens/bola.png')
         pygame.display.set_icon(icon)
 
 
     def jogo_loop(self):
         jogo_aberto = True
-        botao_voltar = Botao(50, 575, 250, 100, "Voltar")
-        placar = Placar(50, 10, 300, 60)
-        barra_forca = BarraForca(50, 600, 300, 30)
+        botao_voltar = Botao(90, 575, 250, 100, "Voltar")
+        placar = Placar(50, 50, 350, 60)
+        barra_forca = BarraForca(65, 500, 300, 30)
         pygame.key.set_repeat(5)
 
         while jogo_aberto:

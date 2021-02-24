@@ -10,15 +10,16 @@ class Placar:
 
     def desenha_placar(self, janela):
         janela.blit(self.imagem, (self.x, self.y))
-        pontos = f"{self.p1} * {self.p2}"
+        pontos = f"{self.p1}*{self.p2}"
 
-        font = pygame.font.Font('8-BIT.TTF', 23)
-        time1 = font.render("Figueira", 1, (0, 0, 0))
-        time2 = font.render("Avai", 1, (0, 0, 0))
-        score = font.render(pontos, 1, (0, 0, 0))
+        font1 = pygame.font.Font('8-BIT.TTF', 25)
+        font2 = pygame.font.Font('8-BIT.TTF', 18)
+        time1 = font1.render("FIG", 1, (0, 0, 0))
+        time2 = font1.render("AVA", 1, (0, 0, 0))
+        score = font2.render(pontos, 1, (0, 0, 0))
 
-        janela.blit(time1, ((self.x-157) + (self.largura / 2 - time1.get_width() / 2), (self.y) + (self.altura / 2 - time1.get_height() / 2)))
-        janela.blit(time2, ((self.x+157) + (self.largura / 2 - time2.get_width() / 2), (self.y) + (self.altura / 2 - time2.get_height() / 2)))
+        janela.blit(time1, ((self.x - 110) + (self.largura / 2 - time1.get_width() / 2), (self.y) + (self.altura / 2 - time1.get_height() / 2)))
+        janela.blit(time2, ((self.x + 110) + (self.largura / 2 - time2.get_width() / 2), (self.y) + (self.altura / 2 - time2.get_height() / 2)))
         janela.blit(score, ((self.x) + (self.largura / 2 - score.get_width() / 2), (self.y) + (self.altura / 2 - score.get_height() / 2)))
 
     def incrementa(self, jogador):
