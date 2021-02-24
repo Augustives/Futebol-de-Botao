@@ -3,6 +3,8 @@ import sys
 from BotaoMenu import Botao
 from Placar import Placar
 from BarraForca import BarraForca
+from Campo import Campo, Lado_do_campo
+
 
 
 class Jogo():
@@ -17,9 +19,9 @@ class Jogo():
 
     def jogo_loop(self):
         jogo_aberto = True
-        botao_voltar = Botao(575, 575, 250, 100, "Voltar")
-        placar = Placar(575, 0, 500, 60)
-        barra_forca = BarraForca(50, 600, 400, 30)
+        botao_voltar = Botao(50, 575, 250, 100, "Voltar")
+        placar = Placar(50, 10, 300, 60)
+        barra_forca = BarraForca(50, 600, 300, 30)
         pygame.key.set_repeat(5)
 
         while jogo_aberto:
@@ -29,19 +31,9 @@ class Jogo():
             barra_forca.desenha_barra(self.janela)
             botao_voltar.desenha_botao(self.janela)
 
-            grupo = pygame.sprite.Group()
-            avai1 = pygame.sprite.Sprite(grupo)
-            avai1.image = pygame.image.load('./imagens/brasao_avai.png')
-            avai1.image = pygame.transform.scale(avai1.image, [80, 80])
-            #pygame.sprite.collide_circle()
-            avai1.rect = pygame.Rect(50, 50, 80, 80)
+            Campo().desenhar(self.janela)
 
-            fig1 = pygame.sprite.Sprite(grupo)
-            fig1.image = pygame.image.load('./imagens/brasao_figueirence_.png')
-            fig1.image = pygame.transform.scale(fig1.image, [80, 80])
-            fig1.rect = pygame.Rect(200, 50, 80, 80)
 
-            grupo.draw(self.janela)
 
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()
