@@ -2,20 +2,15 @@ import pygame
 
 
 class Peao:
-    def __init__(imagem, cor=(0,0,0), raio=80, posicao=(100, 100)):
-        self.
-        self.cor = cor
-        self.raio = raio
+    def __init__(self, imagem, posicao):
+        self.imagem = imagem
         self.posicao = posicao
+        self.peao = pygame.sprite.Sprite()
 
-        avai1 = pygame.sprite.Sprite(grupo)
-        avai1.image = pygame.image.load('brasao_avai.png')
-        avai1.image = pygame.transform.scale(avai1.image, [80, 80])
-        pygame.sprite.collide_circle()
-        avai1.rect = pygame.Rect(50, 50, 80, 80)
+        imagem = 'imagens/brasao_figueirence.png'
 
+        self.peao.image = pygame.image.load(imagem)
+        self.peao.image = pygame.transform.scale(self.peao.image, [80, 80])
 
-    def desenha_peao(self):
+        self.peao.rect = pygame.Rect(posicao[0], posicao[1], 80, 80)
 
-        peao = pygame.sprite.Sprite()
-        peao.image =
