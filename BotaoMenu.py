@@ -9,10 +9,8 @@ class Botao:
         self.b2 = pygame.transform.scale(pygame.image.load("./imagens/botao02.png").convert(), [self.largura, self.altura])
         self.imagem = self.b1
 
-    def desenha_botao(self, janela, outline=None):
-        if outline:
-            pygame.draw.rect(janela, outline, (self.x - 2, self.y - 2, self.largura + 4, self.altura + 4), 0)
-
+    def desenha_botao(self, janela):
+        pygame.draw.rect(janela,  (0, 0, 0), (self.x - 2, self.y - 2, self.largura + 4, self.altura + 4), 0)
         janela.blit(self.imagem, (self.x, self.y))
 
         if self.texto != '':

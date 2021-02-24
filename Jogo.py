@@ -2,6 +2,8 @@ import pygame
 import sys
 from BotaoMenu import Botao
 from Placar import Placar
+from BarraForca import BarraForca
+
 
 class Jogo():
     def __init__(self):
@@ -17,13 +19,15 @@ class Jogo():
         jogo_aberto = True
         botao_voltar = Botao(575, 575, 250, 100, "Voltar")
         placar = Placar(575, 0, 500, 60)
-
+        barra_forca = BarraForca(50, 600, 400, 30)
+        pygame.key.set_repeat(5)
 
         while jogo_aberto:
             self.janela.fill((255, 255, 255))
 
             placar.desenha_placar(self.janela)
-            botao_voltar.desenha_botao(self.janela, (0,0,0))
+            barra_forca.desenha_barra(self.janela)
+            botao_voltar.desenha_botao(self.janela)
 
             grupo = pygame.sprite.Group()
             avai1 = pygame.sprite.Sprite(grupo)
@@ -53,6 +57,10 @@ class Jogo():
                         placar.incrementa(2)
                     if event.key == pygame.K_s:
                         placar.reset()
+                    if event.key == pygame.K_w:
+                        barra_forca.aumenta_forca()
+                    if event.key == pygame.K_q:
+                        barra_forca.diminui_forca()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if botao_voltar.mouse_sobre(pos):
                         jogo_aberto = False
@@ -68,10 +76,12 @@ class Jogo():
         botao_start = Botao(575, 300, 250, 100, "Start")
         botao_creditos = Botao(575, 425, 250, 100, "Credits")
 
+
         while True:
             self.janela.fill((255, 255, 255))
-            botao_start.desenha_botao(self.janela, (0, 0, 0))
-            botao_creditos.desenha_botao(self.janela, (0, 0, 0))
+            botao_start.desenha_botao(self.janela)
+            botao_creditos.desenha_botao(self.janela)
+
 
 
             for event in pygame.event.get():
@@ -89,6 +99,7 @@ class Jogo():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if botao_creditos.mouse_sobre(pos):
                         self.creditos_loop()
+
                 botao_start.botao_hover(event, pos)
                 botao_creditos.botao_hover(event, pos)
 
@@ -102,7 +113,7 @@ class Jogo():
         credito_aberto = True
         while credito_aberto:
             self.janela.fill((255, 255, 255))
-            botao_voltar.desenha_botao(self.janela, (0, 0, 0))
+            botao_voltar.desenha_botao(self.janela)
 
 
             for event in pygame.event.get():
