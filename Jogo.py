@@ -1,9 +1,7 @@
 import pygame
 import sys
 from BotaoMenu import Botao
-from Campo import Campo, Lado_do_campo
-from Time import Time
-from Bola import Bola
+
 
 class Jogo():
     def __init__(self):
@@ -12,23 +10,26 @@ class Jogo():
         self.clock = pygame.time.Clock()
 
     def jogo_loop(self):
-        botao_voltar = Botao((155, 155, 0), 600, 575, 250, 100, "Voltar")
         jogo_aberto = True
+        botao_voltar = Botao((155, 155, 0), 575, 575, 250, 100, "Voltar")
+
         while jogo_aberto:
             self.janela.fill((255, 255, 255))
-            botao_voltar.desenha_botao(self.janela)
+            botao_voltar.desenha_botao(self.janela, (0,0,0))
 
-            campo = Campo()
-            campo.desenhar(self.janela)
+            grupo = pygame.sprite.Group()
+            avai1 = pygame.sprite.Sprite(grupo)
+            avai1.image = pygame.image.load('./imagens/brasao_avai.png')
+            avai1.image = pygame.transform.scale(avai1.image, [80, 80])
+            #pygame.sprite.collide_circle()
+            avai1.rect = pygame.Rect(50, 50, 80, 80)
 
-            time1 = Time('Figueirence', 'imagens/brasao_figueirence.png','imagens/brasao_figueirence_goleiro.png', Lado_do_campo().esquerdo)
-            time1.desenhar(self.janela)
+            fig1 = pygame.sprite.Sprite(grupo)
+            fig1.image = pygame.image.load('./imagens/brasao_figueirence_.png')
+            fig1.image = pygame.transform.scale(fig1.image, [80, 80])
+            fig1.rect = pygame.Rect(200, 50, 80, 80)
 
-            time2 = Time('Avai', 'imagens/brasao_avai.png', 'imagens/brasao_avai_goleiro.png', Lado_do_campo().direito)
-            time2.desenhar(self.janela)
-
-            bola = Bola((880,350))
-            bola.desenhar(self.janela)
+            grupo.draw(self.janela)
 
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()
@@ -41,17 +42,24 @@ class Jogo():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if botao_voltar.mouse_sobre(pos):
                         jogo_aberto = False
+                botao_voltar.botao_hover(event, pos)
 
-            pygame.display.update()
             self.clock.tick(60)
+            pygame.display.update()
+
+
+
 
     def menuPrincipal_loop(self):
-        botao_start = Botao((155, 155, 0), 150, 225, 250, 100, "Start")
-        botao_creditos = Botao((155, 155, 0), 150, 500, 250, 100, "Credits")
+        botao_start = Botao((155, 155, 0), 575, 300, 250, 100, "Start")
+        botao_creditos = Botao((155, 155, 0), 575, 425, 250, 100, "Credits")
+
         while True:
-            self.janela.fill((255, 0, 0))
+            self.janela.fill((255, 255, 255))
             botao_start.desenha_botao(self.janela, (0, 0, 0))
             botao_creditos.desenha_botao(self.janela, (0, 0, 0))
+
+
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()
                 if event.type == pygame.QUIT:
@@ -67,9 +75,13 @@ class Jogo():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if botao_creditos.mouse_sobre(pos):
                         self.creditos_loop()
+                botao_start.botao_hover(event, pos)
+                botao_creditos.botao_hover(event, pos)
 
-            pygame.display.update()
+
             self.clock.tick(60)
+            pygame.display.update()
+
 
     def creditos_loop(self):
         botao_voltar = Botao((155, 155, 0), 600, 575, 250, 100, "Voltar")
@@ -77,6 +89,7 @@ class Jogo():
         while credito_aberto:
             self.janela.fill((255, 255, 255))
             botao_voltar.desenha_botao(self.janela, (0, 0, 0))
+
 
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()
@@ -89,6 +102,7 @@ class Jogo():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if botao_voltar.mouse_sobre(pos):
                         credito_aberto = False
+                botao_voltar.botao_hover(event, pos)
 
-            pygame.display.update()
             self.clock.tick(60)
+            pygame.display.update()
