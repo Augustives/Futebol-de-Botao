@@ -61,10 +61,11 @@ class Jogo():
     def menuPrincipal_loop(self):
         botao_start = Botao(575, 300, 250, 100, "Start")
         botao_creditos = Botao(575, 425, 250, 100, "Credits")
-
+        bg = pygame.image.load("./imagens/bg.png")
 
         while True:
             self.janela.fill((255, 255, 255))
+            self.janela.blit(bg, (0,0))
             botao_start.desenha_botao(self.janela)
             botao_creditos.desenha_botao(self.janela)
 
