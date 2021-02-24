@@ -15,3 +15,6 @@ class Bola():
         grupo = pygame.sprite.Group()
         grupo.add(self.bola)
         grupo.draw(janela)
+
+
+
