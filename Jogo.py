@@ -43,12 +43,6 @@ class Jogo():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         jogo_aberto = False
-                    if event.key == pygame.K_a:
-                        placar.incrementa(1)
-                    if event.key == pygame.K_d:
-                        placar.incrementa(2)
-                    if event.key == pygame.K_s:
-                        placar.reset()
                     if event.key == pygame.K_w:
                         barra_forca.aumenta_forca()
                     if event.key == pygame.K_q:
