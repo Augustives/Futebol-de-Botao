@@ -1,6 +1,6 @@
-from Jogo import Jogo
+from ControladorJogo import ControladorJogo
 
-jogo = Jogo()
+CJogo = ControladorJogo()
 
 if __name__ =="__main__":
-    jogo.menuPrincipal_loop()
+    CJogo.comeca()
