@@ -1,6 +1,8 @@
 import pygame
 import sys
 from BotaoMenu import Botao
+from Placar import Placar
+from BarraForca import BarraForca
 
 
 class Jogo():
@@ -8,14 +10,24 @@ class Jogo():
         pygame.init()
         self.janela = pygame.display.set_mode((1400, 700))
         self.clock = pygame.time.Clock()
+        pygame.display.set_caption("Futebol de Chernobyl")
+        icon = pygame.image.load('./imagens/nuclear.png')
+        pygame.display.set_icon(icon)
+
 
     def jogo_loop(self):
         jogo_aberto = True
-        botao_voltar = Botao((155, 155, 0), 575, 575, 250, 100, "Voltar")
+        botao_voltar = Botao(575, 575, 250, 100, "Voltar")
+        placar = Placar(575, 0, 500, 60)
+        barra_forca = BarraForca(50, 600, 400, 30)
+        pygame.key.set_repeat(5)
 
         while jogo_aberto:
             self.janela.fill((255, 255, 255))
-            botao_voltar.desenha_botao(self.janela, (0,0,0))
+
+            placar.desenha_placar(self.janela)
+            barra_forca.desenha_barra(self.janela)
+            botao_voltar.desenha_botao(self.janela)
 
             grupo = pygame.sprite.Group()
             avai1 = pygame.sprite.Sprite(grupo)
@@ -39,6 +51,16 @@ class Jogo():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         jogo_aberto = False
+                    if event.key == pygame.K_a:
+                        placar.incrementa(1)
+                    if event.key == pygame.K_d:
+                        placar.incrementa(2)
+                    if event.key == pygame.K_s:
+                        placar.reset()
+                    if event.key == pygame.K_w:
+                        barra_forca.aumenta_forca()
+                    if event.key == pygame.K_q:
+                        barra_forca.diminui_forca()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if botao_voltar.mouse_sobre(pos):
                         jogo_aberto = False
@@ -51,13 +73,15 @@ class Jogo():
 
 
     def menuPrincipal_loop(self):
-        botao_start = Botao((155, 155, 0), 575, 300, 250, 100, "Start")
-        botao_creditos = Botao((155, 155, 0), 575, 425, 250, 100, "Credits")
+        botao_start = Botao(575, 300, 250, 100, "Start")
+        botao_creditos = Botao(575, 425, 250, 100, "Credits")
+
 
         while True:
             self.janela.fill((255, 255, 255))
-            botao_start.desenha_botao(self.janela, (0, 0, 0))
-            botao_creditos.desenha_botao(self.janela, (0, 0, 0))
+            botao_start.desenha_botao(self.janela)
+            botao_creditos.desenha_botao(self.janela)
+
 
 
             for event in pygame.event.get():
@@ -75,6 +99,7 @@ class Jogo():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if botao_creditos.mouse_sobre(pos):
                         self.creditos_loop()
+
                 botao_start.botao_hover(event, pos)
                 botao_creditos.botao_hover(event, pos)
 
@@ -84,11 +109,11 @@ class Jogo():
 
 
     def creditos_loop(self):
-        botao_voltar = Botao((155, 155, 0), 600, 575, 250, 100, "Voltar")
+        botao_voltar = Botao(600, 575, 250, 100, "Voltar")
         credito_aberto = True
         while credito_aberto:
             self.janela.fill((255, 255, 255))
-            botao_voltar.desenha_botao(self.janela, (0, 0, 0))
+            botao_voltar.desenha_botao(self.janela)
 
 
             for event in pygame.event.get():
