@@ -1,20 +1,28 @@
 import pygame
 import sys
 from BotaoMenu import Botao
-
+from Placar import Placar
 
 class Jogo():
     def __init__(self):
         pygame.init()
         self.janela = pygame.display.set_mode((1400, 700))
         self.clock = pygame.time.Clock()
+        pygame.display.set_caption("Futebol de Chernobyl")
+        icon = pygame.image.load('./imagens/nuclear.png')
+        pygame.display.set_icon(icon)
+
 
     def jogo_loop(self):
         jogo_aberto = True
-        botao_voltar = Botao((155, 155, 0), 575, 575, 250, 100, "Voltar")
+        botao_voltar = Botao(575, 575, 250, 100, "Voltar")
+        placar = Placar(575, 0, 500, 60)
+
 
         while jogo_aberto:
             self.janela.fill((255, 255, 255))
+
+            placar.desenha_placar(self.janela)
             botao_voltar.desenha_botao(self.janela, (0,0,0))
 
             grupo = pygame.sprite.Group()
@@ -39,6 +47,12 @@ class Jogo():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         jogo_aberto = False
+                    if event.key == pygame.K_a:
+                        placar.incrementa(1)
+                    if event.key == pygame.K_d:
+                        placar.incrementa(2)
+                    if event.key == pygame.K_s:
+                        placar.reset()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if botao_voltar.mouse_sobre(pos):
                         jogo_aberto = False
@@ -51,8 +65,8 @@ class Jogo():
 
 
     def menuPrincipal_loop(self):
-        botao_start = Botao((155, 155, 0), 575, 300, 250, 100, "Start")
-        botao_creditos = Botao((155, 155, 0), 575, 425, 250, 100, "Credits")
+        botao_start = Botao(575, 300, 250, 100, "Start")
+        botao_creditos = Botao(575, 425, 250, 100, "Credits")
 
         while True:
             self.janela.fill((255, 255, 255))
@@ -84,7 +98,7 @@ class Jogo():
 
 
     def creditos_loop(self):
-        botao_voltar = Botao((155, 155, 0), 600, 575, 250, 100, "Voltar")
+        botao_voltar = Botao(600, 575, 250, 100, "Voltar")
         credito_aberto = True
         while credito_aberto:
             self.janela.fill((255, 255, 255))
