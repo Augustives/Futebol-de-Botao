@@ -2,15 +2,15 @@ import pygame
 
 class Placar:
     def __init__(self, x, y, largura, altura):
-        self.x, self.y = x, y
-        self.largura, self.altura = largura, altura
-        self.p1 = 0
-        self.p2 = 0
-        self.imagem = pygame.transform.scale(pygame.image.load("./imagens/placar.png").convert(), [self.largura, self.altura])
+        self.__x, self.__y = x, y
+        self.__largura, self.__altura = largura, altura
+        self.__p1 = 0
+        self.__p2 = 0
+        self.__imagem = pygame.transform.scale(pygame.image.load("./imagens/placar.png").convert(), [self.__largura, self.__altura])
 
     def desenha_placar(self, janela):
-        janela.blit(self.imagem, (self.x, self.y))
-        pontos = f"{self.p1}*{self.p2}"
+        janela.blit(self.__imagem, (self.__x, self.__y))
+        pontos = f"{self.__p1}*{self.__p2}"
 
         font1 = pygame.font.Font('8-BIT.TTF', 25)
         font2 = pygame.font.Font('8-BIT.TTF', 18)
@@ -18,15 +18,15 @@ class Placar:
         time2 = font1.render("AVA", 1, (0, 0, 0))
         score = font2.render(pontos, 1, (0, 0, 0))
 
-        janela.blit(time1, ((self.x - 110) + (self.largura / 2 - time1.get_width() / 2), (self.y) + (self.altura / 2 - time1.get_height() / 2)))
-        janela.blit(time2, ((self.x + 110) + (self.largura / 2 - time2.get_width() / 2), (self.y) + (self.altura / 2 - time2.get_height() / 2)))
-        janela.blit(score, ((self.x) + (self.largura / 2 - score.get_width() / 2), (self.y) + (self.altura / 2 - score.get_height() / 2)))
+        janela.blit(time1, ((self.__x - 110) + (self.__largura / 2 - time1.get_width() / 2), (self.__y) + (self.__altura / 2 - time1.get_height() / 2)))
+        janela.blit(time2, ((self.__x + 110) + (self.__largura / 2 - time2.get_width() / 2), (self.__y) + (self.__altura / 2 - time2.get_height() / 2)))
+        janela.blit(score, ((self.__x) + (self.__largura / 2 - score.get_width() / 2), (self.__y) + (self.__altura / 2 - score.get_height() / 2)))
 
     def incrementa(self, jogador):
         if int(jogador) == 1:
-            self.p1 += 1
+            self.__p1 += 1
         else:
-            self.p2 += 1
+            self.__p2 += 1
 
     def reset(self):
-        self.p1, self.p2 = 0, 0
+        self.__p1, self.__p2 = 0, 0

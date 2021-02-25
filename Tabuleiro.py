@@ -25,7 +25,7 @@ class Tabuleiro:
         self.__placar.desenha_placar(self.__janela)
         self.__barraForca.desenha_barra(self.__janela)
         self.__botaoVoltar.desenha_botao(self.__janela)
-        self.__campo.desenhar(self.__janela)
+        self.__campo.desenha_campo(self.__janela)
         self.__time_1.desenhar(self.__janela)
         self.__time_2.desenhar(self.__janela)
         self.__bola.desenha_bola(self.__janela)
