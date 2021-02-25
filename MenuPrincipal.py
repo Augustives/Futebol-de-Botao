@@ -7,9 +7,9 @@ class MenuPrincipal:
         self.__telaJogo = telaJogo
         self.__telaCreditos = telaCreditos
         self.__clock = pygame.time.Clock()
+        self.__bg = pygame.image.load("./imagens/bg.png")
         self.__botaoStart = Botao(575, 300, 250, 100, "Start")
         self.__botaoCreditos = Botao(575, 425, 250, 100, "Credits")
-        self.__bg = pygame.image.load("./imagens/bg.png")
 
     def loop(self):
         while True:
