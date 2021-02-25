@@ -1,4 +1,5 @@
 import pygame
+import sys
 from BotaoMenu import Botao
 
 class MenuPrincipal:
@@ -11,12 +12,15 @@ class MenuPrincipal:
         self.__botaoStart = Botao(575, 300, 250, 100, "Start")
         self.__botaoCreditos = Botao(575, 425, 250, 100, "Credits")
 
+    def desenha_mp(self):
+        self.__janela.fill((255, 255, 255))
+        self.__janela.blit(self.__bg, (0, 0))
+        self.__botaoStart.desenha_botao(self.__janela)
+        self.__botaoCreditos.desenha_botao(self.__janela)
+
     def loop(self):
         while True:
-            self.__janela.fill((255, 255, 255))
-            self.__janela.blit(self.__bg, (0, 0))
-            self.__botaoStart.desenha_botao(self.__janela)
-            self.__botaoCreditos.desenha_botao(self.__janela)
+            self.desenha_mp()
 
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()

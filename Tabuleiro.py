@@ -1,4 +1,5 @@
 import pygame
+import sys
 from BotaoMenu import Botao
 from Campo import Campo
 from Lado_campo import Lado_do_campo
@@ -17,21 +18,24 @@ class Tabuleiro:
         self.__campo = Campo()
         self.__time_1 = Time('Figueirence', 'imagens/brasao_figueirence.png', 'imagens/brasao_figueirence_goleiro.png', Lado_do_campo().esquerdo)
         self.__time_2 = Time('Avai', 'imagens/brasao_avai.png', 'imagens/brasao_avai_goleiro.png', Lado_do_campo().direito)
-        self.__bola = Bola()
+        self.__bola = Bola(870, 340)
+
+    def desenha_tabuleiro(self):
+        self.__janela.fill((200, 200, 200))
+        self.__placar.desenha_placar(self.__janela)
+        self.__barraForca.desenha_barra(self.__janela)
+        self.__botaoVoltar.desenha_botao(self.__janela)
+        self.__campo.desenhar(self.__janela)
+        self.__time_1.desenhar(self.__janela)
+        self.__time_2.desenhar(self.__janela)
+        self.__bola.desenha_bola(self.__janela)
 
     def loop(self):
         jogo_aberto = True
         barra_mov = 0
 
         while jogo_aberto:
-            self.__janela.fill((200, 200, 200))
-            self.__placar.desenha_placar(self.__janela)
-            self.__barraForca.desenha_barra(self.__janela)
-            self.__botaoVoltar.desenha_botao(self.__janela)
-            self.__campo.desenhar(self.__janela)
-            self.__time_1.desenhar(self.__janela)
-            self.__time_2.desenhar(self.__janela)
-            self.__bola.desenhar(self.__janela)
+            self.desenha_tabuleiro()
 
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()

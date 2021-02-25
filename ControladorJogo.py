@@ -10,7 +10,7 @@ class ControladorJogo():
         self.desennha_janela(1400, 700)
         self.__telaJogo = Tabuleiro(self.__janela)
         self.__telaCreditos = Creditos(self.__janela)
-        self.__MP = MenuPrincipal(self.__janela, self.__telaJogo, self.__telaCreditos)
+        self.__menuPrincipal = MenuPrincipal(self.__janela, self.__telaJogo, self.__telaCreditos)
 
     def desennha_janela(self, x, y):
         self.__janela = pygame.display.set_mode((x, y))
@@ -18,7 +18,7 @@ class ControladorJogo():
         pygame.display.set_icon(pygame.image.load('./imagens/bola.png'))
 
     def comeca(self):
-        self.__MP.loop()
+        self.__menuPrincipal.loop()
 
 
 
