@@ -5,23 +5,28 @@ from Goleiro import Goleiro
 from Lado_campo import Lado_do_campo
 
 class Time:
-    def __init__(self, nome, brasao_jogador, brasao_goleiro, lado_do_campo=Lado_do_campo().esquerdo):
-        self.nome = nome
-        self.lado_do_campo = lado_do_campo
-        self.jogador_1 = Peao(brasao_jogador, self.lado_do_campo[0]).peao
-        self.jogador_2 = Peao(brasao_jogador, self.lado_do_campo[1]).peao
-        self.jogador_3 = Peao(brasao_jogador, self.lado_do_campo[2]).peao
-        self.jogador_4 = Peao(brasao_jogador, self.lado_do_campo[3]).peao
-        self.jogador_5 = Peao(brasao_jogador, self.lado_do_campo[4]).peao
-        self.goleiro = Goleiro(brasao_goleiro, self.lado_do_campo[5]).goleiro
+    def __init__(self, nome, brasao_peao, brasao_goleiro, lado_do_campo=Lado_do_campo().esquerdo):
+        self.__nome = nome
+        self.__lado_do_campo = lado_do_campo
+        self.__brasao_peao = pygame.image.load(brasao_peao)
+        self.__brasao_goleiro = pygame.image.load(brasao_goleiro)
+        self.__posicoes = lado_do_campo
+
+        self.__peao_1 = Peao(self.__posicoes[0][0],self.__posicoes[0][1], self.__brasao_peao)
+        self.__peao_2 = Peao(self.__posicoes[1][0], self.__posicoes[1][1], self.__brasao_peao)
+        self.__peao_3 = Peao(self.__posicoes[2][0], self.__posicoes[2][1], self.__brasao_peao)
+        self.__peao_4 = Peao(self.__posicoes[3][0], self.__posicoes[3][1], self.__brasao_peao)
+        self.__peao_5 = Peao(self.__posicoes[4][0], self.__posicoes[4][1], self.__brasao_peao)
+        self.__goleiro = Goleiro(self.__posicoes[5][0], self.__posicoes[5][1], self.__brasao_goleiro)
+
 
 
     def desenhar(self, janela):
         grupo = pygame.sprite.Group()
-        grupo.add(self.jogador_1)
-        grupo.add(self.jogador_2)
-        grupo.add(self.jogador_3)
-        grupo.add(self.jogador_4)
-        grupo.add(self.jogador_5)
-        grupo.add(self.goleiro)
+        grupo.add(self.__peao_1.get_sprit)
+        grupo.add(self.__peao_2.get_sprit)
+        grupo.add(self.__peao_3.get_sprit)
+        grupo.add(self.__peao_4.get_sprit)
+        grupo.add(self.__peao_5.get_sprit)
+        grupo.add(self.__goleiro.get_sprit)
         grupo.draw(janela)
