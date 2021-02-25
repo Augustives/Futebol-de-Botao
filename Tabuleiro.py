@@ -7,7 +7,7 @@ from BarraForca import BarraForca
 from Time import Time
 from Bola import Bola
 
-class Jogo:
+class Tabuleiro:
     def __init__(self, janela):
         self.__janela = janela
         self.__clock = pygame.time.Clock()
@@ -21,7 +21,7 @@ class Jogo:
 
     def loop(self):
         jogo_aberto = True
-        pygame.key.set_repeat(5)
+        barra_mov = 0
 
         while jogo_aberto:
             self.__janela.fill((200, 200, 200))
@@ -33,7 +33,6 @@ class Jogo:
             self.__time_2.desenhar(self.__janela)
             self.__bola.desenhar(self.__janela)
 
-
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()
                 if event.type == pygame.QUIT:
@@ -43,13 +42,19 @@ class Jogo:
                     if event.key == pygame.K_ESCAPE:
                         jogo_aberto = False
                     if event.key == pygame.K_w:
-                        self.__barraForca.aumenta_forca()
+                        barra_mov = 5
                     if event.key == pygame.K_q:
-                        self.__barraForca.diminui_forca()
+                        barra_mov = -5
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_w or event.key == pygame.K_q:
+                        barra_mov = 0
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.__botaoVoltar.mouse_sobre(pos):
                         jogo_aberto = False
                 self.__botaoVoltar.botao_hover(event, pos)
+
+            self.__barraForca.incrementa(barra_mov)
+
 
             self.__clock.tick(60)
             pygame.display.update()

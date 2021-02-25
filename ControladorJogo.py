@@ -1,6 +1,6 @@
 import pygame
 from MenuPrincipal  import MenuPrincipal
-from Jogo import Jogo
+from Tabuleiro import Tabuleiro
 from Creditos import Creditos
 
 class ControladorJogo():
@@ -10,7 +10,7 @@ class ControladorJogo():
         self.clock = pygame.time.Clock()
         pygame.display.set_caption("Futebol de Botao")
         pygame.display.set_icon(pygame.image.load('./imagens/bola.png'))
-        self.__telaJogo = Jogo(self.janela)
+        self.__telaJogo = Tabuleiro(self.janela)
         self.__telaCreditos = Creditos(self.janela)
         self.__MP = MenuPrincipal(self.janela, self.__telaJogo, self.__telaCreditos)
 

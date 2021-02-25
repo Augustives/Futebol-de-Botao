@@ -13,10 +13,8 @@ class BarraForca:
         janela.blit(self.imagem, (self.x, self.y))
         pygame.draw.rect(janela, (255,0,0), (self.x+15, self.y+5, self.forca_atual, self.altura-10))
 
-    def aumenta_forca(self):
-        if self.forca_atual < self.forca_max:
-            self.forca_atual +=1
-
-    def diminui_forca(self):
-        if self.forca_atual > 0:
-            self.forca_atual -= 1
+    def incrementa(self, valor):
+        if valor > 0 and (self.forca_atual+valor) < self.forca_max:
+            self.forca_atual += valor
+        elif valor < 0 and (self.forca_atual+valor) > 0:
+            self.forca_atual += valor
