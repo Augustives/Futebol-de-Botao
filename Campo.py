@@ -1,10 +1,10 @@
 import pygame
 
-
 class Campo():
 
     def __init__(self):
-        pass
+        self.gol = None
+        self.laterais = pygame.sprite.Group()
 
     def desenhar(self, janela):
         grupo = pygame.sprite.Group()
@@ -14,6 +14,8 @@ class Campo():
         gramado.rect = pygame.Rect(430, 50, 900, 600, )
         grupo.draw(janela)
 
+        self.laterais.add()
+
         transparente = pygame.Color(255, 255, 255, 255)
         pygame.draw.rect(janela, transparente, (450, 75, 850, 545), width=6)
         pygame.draw.rect(janela, transparente, (450, 220, 100, 260), width=6)
@@ -21,7 +23,6 @@ class Campo():
         pygame.draw.circle(janela, transparente, (880, 350), 120, width=6)
         pygame.draw.line(janela, transparente, (880, 75), (880, 620), width=6)
         pygame.draw.circle(janela, (255, 255, 255), (880, 350), 10, )
-
 
 class Lado_do_campo():
     def __init__(self):

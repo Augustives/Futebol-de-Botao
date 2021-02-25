@@ -3,6 +3,8 @@ from BotaoMenu import Botao
 from Campo import Campo, Lado_do_campo
 from Placar import Placar
 from BarraForca import BarraForca
+from Time import Time
+from Bola import Bola
 
 class Jogo:
     def __init__(self, janela):
@@ -12,17 +14,24 @@ class Jogo:
         self.__placar = Placar(50, 50, 350, 60)
         self.__barraForca = BarraForca(65, 500, 300, 30)
         self.__campo = Campo()
+        self.__time_1 = Time('Figueirence', 'imagens/brasao_figueirence.png', 'imagens/brasao_figueirence_goleiro.png', Lado_do_campo().esquerdo)
+        self.__time_2 = Time('Avai', 'imagens/brasao_avai.png', 'imagens/brasao_avai_goleiro.png', Lado_do_campo().direito)
+        self.__bola = Bola()
 
     def loop(self):
         jogo_aberto = True
         pygame.key.set_repeat(5)
 
         while jogo_aberto:
-            self.__janela.fill((255, 255, 255))
+            self.__janela.fill((200, 200, 200))
             self.__placar.desenha_placar(self.__janela)
             self.__barraForca.desenha_barra(self.__janela)
             self.__botaoVoltar.desenha_botao(self.__janela)
             self.__campo.desenhar(self.__janela)
+            self.__time_1.desenhar(self.__janela)
+            self.__time_2.desenhar(self.__janela)
+            self.__bola.desenhar(self.__janela)
+
 
             for event in pygame.event.get():
                 pos = pygame.mouse.get_pos()

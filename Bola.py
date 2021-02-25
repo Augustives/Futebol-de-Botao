@@ -1,7 +1,7 @@
 import pygame
 
 class Bola():
-    def __init__(self, posicao):
+    def __init__(self, posicao=(870,340)):
         self.imagem = 'imagens/bola.png'
         self.posicao = posicao
         self.bola = pygame.sprite.Sprite()
