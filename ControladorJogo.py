@@ -1,9 +1,4 @@
 import pygame
-import sys
-from BotaoMenu import Botao
-from Placar import Placar
-from BarraForca import BarraForca
-from Campo import Campo, Lado_do_campo
 from MenuPrincipal  import MenuPrincipal
 from Jogo import Jogo
 from Creditos import Creditos

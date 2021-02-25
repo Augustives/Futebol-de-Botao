@@ -1,6 +1,7 @@
 import pygame
 from BotaoMenu import Botao
-from Campo import Campo, Lado_do_campo
+from Campo import Campo
+from Lado_campo import Lado_do_campo
 from Placar import Placar
 from BarraForca import BarraForca
 from Time import Time

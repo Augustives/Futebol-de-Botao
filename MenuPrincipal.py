@@ -1,8 +1,5 @@
 import pygame
 from BotaoMenu import Botao
-from Jogo import Jogo
-from Campo import Campo, Lado_do_campo
-
 
 class MenuPrincipal:
     def __init__(self, janela, telaJogo, telaCreditos):

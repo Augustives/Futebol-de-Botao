@@ -1,7 +1,8 @@
 
 import pygame
-from Peao import Peao, Goleiro
-from Campo import Lado_do_campo
+from Peao import Peao
+from Goleiro import Goleiro
+from Lado_campo import Lado_do_campo
 
 class Time:
     def __init__(self, nome, brasao_jogador, brasao_goleiro, lado_do_campo=Lado_do_campo().esquerdo):
