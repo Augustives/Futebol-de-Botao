@@ -9,12 +9,13 @@ class MenuPrincipal:
         self.__telaCreditos = telaCreditos
         self.__clock = pygame.time.Clock()
         self.__bg = pygame.image.load("./imagens/bg.png")
-        self.__botaoStart = Botao(575, 300, 250, 100, "Start")
-        self.__botaoCreditos = Botao(575, 425, 250, 100, "Credits")
+        self.__botaoStart = Botao(575, 400, 250, 100, "Start")
+        self.__botaoCreditos = Botao(575, 525, 250, 100, "Credits")
 
     def desenha_mp(self):
         self.__janela.fill((255, 255, 255))
         self.__janela.blit(self.__bg, (0, 0))
+        self.__janela.blit((pygame.transform.scale(pygame.image.load("./imagens/titulo.png").convert(), [600, 200])), (400,100))
         self.__botaoStart.desenha_botao(self.__janela)
         self.__botaoCreditos.desenha_botao(self.__janela)
 
