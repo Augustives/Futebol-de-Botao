@@ -14,7 +14,7 @@ class Palheta:
 
     def desenha_palheta(self, alvo,  janela):
         self.__x, self.__y = pygame.mouse.get_pos()
-        self.__tangente = (degrees(atan2((alvo.y - self.__y), (alvo.x - self.__x))))
-        pygame.draw.line(janela,(0,0,255), (self.__x, self.__y), (alvo.x+30, alvo.y+30), 3)
+        self.__tangente = atan2((alvo.y+20 - self.__y), (alvo.x+20 - self.__x)) + 1.5708
+        pygame.draw.line(janela,(0,0,255), (self.__x, self.__y), (alvo.x+20, alvo.y+20), 3)
 
 

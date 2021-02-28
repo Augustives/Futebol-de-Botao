@@ -61,7 +61,7 @@ class Tabuleiro:
                     if event.key == pygame.K_a:
                         gol_mov = -3.5
                     if event.key == pygame.K_SPACE and alvo is not None:
-                        self.__palheta.aplica_forca(alvo, 7)
+                        self.__palheta.aplica_forca(alvo, 5)
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_w or event.key == pygame.K_q:
                         barra_mov = 0
@@ -80,14 +80,15 @@ class Tabuleiro:
             self.__time_1.goleiro.move(gol_mov)
             self.__barraForca.incrementa(barra_mov)
 
+            self.__bola.move()
+            self.__fisica.colisao_campo(self.__bola)
+
             for i, peao1 in enumerate(self.__time_1.lista_peao+self.__time_2.lista_peao):
                 peao1.move()
+                self.__fisica.colisao_bola(peao1, self.__bola)
                 self.__fisica.colisao_campo(peao1)
                 for peao2 in  (self.__time_1.lista_peao+self.__time_2.lista_peao)[i + 1:]:
                     self.__fisica.colisao_peoes(peao1, peao2)
-
-
-
 
 
             self.__clock.tick(60)

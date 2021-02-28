@@ -1,15 +1,16 @@
 import pygame
+import math
 from math import *
 
 class Peao():
     def __init__(self, x, y, imagem):
         self.__x = x
         self.__y = y
-        self.__raio = 30
-        self.__angulo = 0
+        self.__raio = 20
+        self.__angulo = radians(0)
         self.__velocidade = 0
-        self.__atrito = 0.175
-        self.__imagem = pygame.transform.scale(imagem, [60, 60])
+        self.__atrito = 0.075
+        self.__imagem = pygame.transform.scale(imagem, [40, 40])
 
     @property
     def x(self):
@@ -54,13 +55,13 @@ class Peao():
         self.__velocidade -= self.__atrito
         if self.__velocidade <= 0:
             self.__velocidade = 0
-        self.__x = self.__x + self.__velocidade * cos(radians(self.__angulo))
-        self.__y = self.__y + self.__velocidade * sin(radians(self.__angulo))
+        self.__x += math.sin(self.__angulo) * self.__velocidade
+        self.__y -= math.cos(self.__angulo) * self.__velocidade
 
 
     def mouse_sobre(self, pos):
-        if pos[0] > self.__x and pos[0] < self.__x + 60 :
-            if pos[1] > self.__y and pos[1] < self.__y + 60:
+        if pos[0] > self.__x and pos[0] < self.__x + 40 :
+            if pos[1] > self.__y and pos[1] < self.__y + 40:
                 return True
 
         return False
