@@ -4,12 +4,14 @@ class Goleiro():
     def __init__(self, x, y, imagem):
         self.__x = x
         self.__y = y
-        self.__imagem = imagem
-        self.__sprit = pygame.sprite.Sprite()
-        self.__sprit.image = self.__imagem
-        self.__sprit.image = pygame.transform.scale(self.__sprit.image, [30, 90])
-        self.__sprit.rect = pygame.Rect(self.__x, self.__y, 30, 90)
+        self.__limites = [self.__y+85, self.__y-75]
+        self.__imagem = pygame.transform.scale(imagem, [30, 90])
 
-    @property
-    def get_sprit(self):
-        return self.__sprit
+    def desenha_goleiro(self, janela):
+        janela.blit(self.__imagem, (self.__x, self.__y))
+
+    def move(self, valor):
+        if valor > 0 and (self.__y + valor) < (self.__limites[0]):
+            self.__y += valor
+        elif valor < 0 and (self.__y + valor) > (self.__limites[1]):
+            self.__y += valor

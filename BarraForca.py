@@ -17,3 +17,4 @@ class BarraForca:
             self.forca_atual += valor
         elif valor < 0 and (self.forca_atual+valor) > 0:
             self.forca_atual += valor
+

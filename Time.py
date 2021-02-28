@@ -19,14 +19,18 @@ class Time:
         self.__peao_5 = Peao(self.__posicoes[4][0], self.__posicoes[4][1], self.__brasao_peao)
         self.__goleiro = Goleiro(self.__posicoes[5][0], self.__posicoes[5][1], self.__brasao_goleiro)
 
+        self.__lista_peao = [self.__peao_1, self.__peao_2, self.__peao_3, self.__peao_4, self.__peao_5]
 
 
-    def desenhar(self, janela):
-        grupo = pygame.sprite.Group()
-        grupo.add(self.__peao_1.get_sprit)
-        grupo.add(self.__peao_2.get_sprit)
-        grupo.add(self.__peao_3.get_sprit)
-        grupo.add(self.__peao_4.get_sprit)
-        grupo.add(self.__peao_5.get_sprit)
-        grupo.add(self.__goleiro.get_sprit)
-        grupo.draw(janela)
+    @property
+    def lista_peao(self):
+        return self.__lista_peao
+
+    @property
+    def goleiro(self):
+        return self.__goleiro
+
+    def desenha_time(self, janela):
+        for i in self.__lista_peao:
+            i.desenha_peao(janela)
+        self.__goleiro.desenha_goleiro(janela)
