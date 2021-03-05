@@ -1,17 +1,27 @@
 import pygame
+import pymunk
 
 class Goleiro():
-    def __init__(self, x, y, imagem):
-        self.__x = x
-        self.__y = y
-        self.__limites = [self.__y+85, self.__y-75]
+    def __init__(self, x, y, imagem, space):
+        self.__body = pymunk.Body(body_type=pymunk.Body.KINEMATIC)
+        self.__body.position = x, y
+        self.__shape = pymunk.Segment(self.__body, (0, 30), (0, -30), 15)
+        self.__shape.elasticity = 1
+        self.__limites = [y + 110, y - 50]
+        self.__limites = [y + 110, y - 50]
         self.__imagem = pygame.transform.scale(imagem, [30, 90])
+        space.add(self.__body, self.__shape)
 
     def desenha_goleiro(self, janela):
-        janela.blit(self.__imagem, (self.__x, self.__y))
+        x, y = self.__body.position
+        janela.blit(self.__imagem, (x+5, y-25))
 
     def move(self, valor):
-        if valor > 0 and (self.__y + valor) < (self.__limites[0]):
-            self.__y += valor
-        elif valor < 0 and (self.__y + valor) > (self.__limites[1]):
-            self.__y += valor
+        x, y = self.__body.position
+
+        if valor > 0 and (y + valor) < (self.__limites[0]):
+            y += valor
+        elif valor < 0 and (y + valor) > (self.__limites[1]):
+            y += valor
+
+        self.__body.position = x, y

@@ -1,62 +1,43 @@
 import pygame
-import math
+import pymunk
 
 class Bola():
-    def __init__(self, x, y):
-        self.__x = x
-        self.__y = y
-        self.__raio = 20
-        self.__angulo = 0.0174533
-        self.__velocidade = 0.5
-        self.__atrito = 0.050
-        self.__imagem = pygame.transform.scale(pygame.image.load('imagens/bola.png'), [40, 40])
+    def __init__(self, x, y, space):
+        self.__body = pymunk.Body()
+        self.__body.position = x, y
+        self.__body.velocity = 0, 0
+        self.__shape = pymunk.Circle(self.__body, 10)
+        self.__shape.density = 1
+        self.__shape.mass = 0.1
+        self.__atrito = 0.985
+        self.__shape.elasticity = 0.95
+        self.__shape.collision_type = 1
+        self.__imagem = pygame.transform.scale(pygame.image.load('imagens/bola.png'), [20, 20])
+        space.add(self.__body, self.__shape)
 
     @property
-    def x(self):
-        return self.__x
-
-    @x.setter
-    def x(self, x):
-        self.__x = x
+    def shape(self):
+        return self.__shape
 
     @property
-    def y(self):
-        return self.__y
-
-    @y.setter
-    def y(self, y):
-        self.__y = y
-
-    @property
-    def raio(self):
-        return self.__raio
-
-    @property
-    def angulo(self):
-        return self.__angulo
-
-    @angulo.setter
-    def angulo(self, angulo):
-        self.__angulo = angulo
-
-    @property
-    def velocidade(self):
-        return self.__velocidade
-
-    @velocidade.setter
-    def velocidade(self, velocidade):
-        self.__velocidade = velocidade
-
-    def move(self):
-        self.__velocidade -= self.__atrito
-        if self.__velocidade <= 0:
-            self.__velocidade = 0
-        self.__x += math.sin(self.__angulo) * self.__velocidade
-        self.__y -= math.cos(self.__angulo) * self.__velocidade
-
+    def body(self):
+        return self.__body
 
     def desenha_bola(self, janela):
-        janela.blit(self.__imagem, (self.__x, self.__y))
+        x, y = self.__body.position
+        janela.blit(self.__imagem, (x+10, y+10))
 
+    def atrito(self):
+        v1, v2 = self.__body.velocity
 
+        if v1 > 0:
+            v1 *= self.__atrito
+        elif v1 < 0:
+            v1 *= self.__atrito
+        if v2 > 0:
+            v2 *= self.__atrito
+        elif v2 < 0:
+            v2 *= self.__atrito
+
+        self.__body.velocity = v1, v2
 
