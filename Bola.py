@@ -9,7 +9,7 @@ class Bola():
         self.__shape = pymunk.Circle(self.__body, 10)
         self.__shape.density = 1
         self.__shape.mass = 0.1
-        self.__atrito = 0.985
+        self.__atrito = 0.98
         self.__shape.elasticity = 0.95
         self.__shape.collision_type = 1
         self.__imagem = pygame.transform.scale(pygame.image.load('imagens/bola.png'), [20, 20])

@@ -7,7 +7,7 @@ class ControladorJogo():
     def __init__(self):
         pygame.init()
         self.__janela = None
-        self.desennha_janela(1400, 700)
+        self.desennha_janela(1400, 800)
         self.__telaJogo = Tabuleiro(self.__janela)
         self.__telaCreditos = Creditos(self.__janela)
         self.__menuPrincipal = MenuPrincipal(self.__janela, self.__telaJogo, self.__telaCreditos)

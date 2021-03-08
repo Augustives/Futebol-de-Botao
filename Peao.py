@@ -9,7 +9,7 @@ class Peao():
         self.__shape = pymunk.Circle(self.__body, 20)
         self.__shape.density = 1
         self.__shape.mass = 1
-        self.__atrito = 0.95
+        self.__atrito = 0.96
         self.__shape.elasticity = 0.75
         self.__shape.collision_type = 1
         space.add(self.__body, self.__shape)
