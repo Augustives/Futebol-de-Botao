@@ -5,6 +5,16 @@ class Campo():
     def __init__(self):
         self.__gol = None
         self.__laterais = pygame.sprite.Group()
+        self.__esquerdo = [(500, 200), (500, 575), (790, 200), (790, 575), (650, 375), (455, 400)]
+        self.__direito = [(1175, 200), (1175, 575), (890, 200), (890, 575), (1010, 375), (1255, 400)]
+
+    @property
+    def esquerdo(self):
+        return self.__esquerdo
+
+    @property
+    def direito(self):
+        return self.__direito
 
     def desenha_campo(self, janela):
         grupo = pygame.sprite.Group()

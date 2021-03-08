@@ -5,7 +5,7 @@ import pymunk
 import sys
 from BotaoMenu import Botao
 from Campo import Campo
-from Lado_campo import Lado_do_campo, CordenadasCampo
+from Lado_campo import Lado_do_campo
 from Placar import Placar
 from BarraForca import BarraForca
 from Time import Time
@@ -22,11 +22,10 @@ class Tabuleiro:
         self.__placar = Placar(40, 100, 350, 60)
         self.__barraForca = BarraForca(65, 500, 300, 30)
         self.__campo = Campo()
-        self.__lado_campo = CordenadasCampo()
         self.__time_1 = Time('Figueirence', 'imagens/brasao_figueirence.png', 'imagens/brasao_figueirence_goleiro.png'
-                             , self.__lado_campo.esquerdo, self.__space )
+                             , self.__campo.esquerdo, self.__space )
         self.__time_2 = Time('Avai', 'imagens/brasao_avai.png', 'imagens/brasao_avai_goleiro.png'
-                             , self.__lado_campo.direito, self.__space)
+                             , self.__campo.direito, self.__space)
         self.__bola = Bola(860, 380, self.__space)
         self.__palheta = Palheta()
 

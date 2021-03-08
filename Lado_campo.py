@@ -11,15 +11,3 @@ class Lado_do_campo():
             self.__shape.collision_type = collision_number
 
 
-class CordenadasCampo:
-    def __init__(self):
-        self.__esquerdo = [(500, 200), (500, 575), (790, 200), (790, 575), (650, 375), (455, 400)]
-        self.__direito = [(1175, 200), (1175, 575), (890, 200), (890, 575), (1010, 375), (1255, 400)]
-
-    @property
-    def esquerdo(self):
-        return self.__esquerdo
-
-    @property
-    def direito(self):
-        return self.__direito
