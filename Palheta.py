@@ -46,7 +46,6 @@ class Palheta:
                 p1x, p1y = Vec2d(x, y)
                 p2x, p2y = from_pygame(event.pos, janela)
                 impulsex, impulsey = 2 * Vec2d(p1x - p2x, p1y - p2y).rotated(-b.angle)
-                print(impulsex, impulsey)
                 if impulsex > 200:
                     impulsex = 200
                 elif impulsex < -200:

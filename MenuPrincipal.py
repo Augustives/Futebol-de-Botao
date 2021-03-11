@@ -2,11 +2,10 @@ import pygame
 import sys
 from BotaoMenu import Botao
 
+
 class MenuPrincipal:
-    def __init__(self, janela, telaJogo, telaCreditos):
+    def __init__(self, janela):
         self.__janela = janela
-        self.__telaJogo = telaJogo
-        self.__telaCreditos = telaCreditos
         self.__clock = pygame.time.Clock()
         self.__bg = pygame.image.load("./imagens/bg.png")
         self.__botaoStart = Botao(575, 400, 250, 100, "Start")
@@ -20,7 +19,8 @@ class MenuPrincipal:
         self.__botaoCreditos.desenha_botao(self.__janela)
 
     def loop(self):
-        while True:
+        aberto = True
+        while aberto:
             self.desenha_mp()
 
             for event in pygame.event.get():
@@ -34,10 +34,10 @@ class MenuPrincipal:
                         sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.__botaoStart.mouse_sobre(pos):
-                        self.__telaJogo.loop()
+                        return "jogo"
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.__botaoCreditos.mouse_sobre(pos):
-                        self.__telaCreditos.loop()
+                        return "creditos"
 
                 self.__botaoStart.botao_hover(event, pos)
                 self.__botaoCreditos.botao_hover(event, pos)

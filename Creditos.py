@@ -2,6 +2,7 @@ import pygame
 import sys
 from BotaoMenu import Botao
 
+
 class Creditos:
     def __init__(self, janela):
         self.__janela = janela
@@ -13,8 +14,8 @@ class Creditos:
         self.__botaoVoltar.desenha_botao(self.__janela)
 
     def loop(self):
-        credito_aberto = True
-        while credito_aberto:
+        aberto = True
+        while aberto:
             self.desenha_creditos()
 
             for event in pygame.event.get():
@@ -24,10 +25,10 @@ class Creditos:
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        credito_aberto = False
+                        aberto = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.__botaoVoltar.mouse_sobre(pos):
-                        credito_aberto = False
+                        aberto = False
                 self.__botaoVoltar.botao_hover(event, pos)
 
             self.__clock.tick(60)
