@@ -25,9 +25,9 @@ class ControladorJogo():
 
     def comeca(self):
         while True:
+            self.__campo = Campo()
+            self.__telaEscolhe = JanelaEscolhaTime(self.__janela)
             if self.__menuPrincipal.loop() == "jogo":
-                self.__campo = Campo()
-                self.__telaEscolhe = JanelaEscolhaTime(self.__janela)
                 if self.__telaEscolhe.loop():
                     self.__campo.cria_time(self.__telaEscolhe.escolha1, self.__telaEscolhe.escolha2)
                     self.__telaJogo = JanelaJogo(self.__janela, self.__campo)
