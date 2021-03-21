@@ -31,7 +31,7 @@ class JanelaCreditos:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.__botaoVoltar.mouse_sobre(pos):
                         aberto = False
-                self.__botaoVoltar.botao_hover(event, pos)
+                self.__botaoVoltar.botao_hover(pos)
 
             self.__clock.tick(60)
             pygame.display.update()
