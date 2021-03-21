@@ -1,9 +1,9 @@
 import pygame
 import sys
-from BotaoMenu import Botao
+from View.BotaoMenu import Botao
 
 
-class Creditos:
+class JanelaCreditos:
     def __init__(self, janela):
         self.__janela = janela
         self.__bg = pygame.image.load("./imagens/bg.png")

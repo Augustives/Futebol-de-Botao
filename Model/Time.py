@@ -1,16 +1,15 @@
 
 import pygame
-from Peao import Peao
-from Goleiro import Goleiro
-from Lado_campo import Lado_do_campo
+from Model.Peao import Peao
+from Model.Goleiro import Goleiro
+
 
 class Time:
-    def __init__(self, nome, brasao_peao, brasao_goleiro, lado_do_campo, space):
+    def __init__(self, nome, brasao_peao, brasao_goleiro, posicoes, space):
         self.__nome = nome
-        self.__lado_do_campo = lado_do_campo
         self.__brasao_peao = pygame.image.load(brasao_peao)
         self.__brasao_goleiro = pygame.image.load(brasao_goleiro)
-        self.__posicoes = lado_do_campo
+        self.__posicoes = posicoes
         self.__space = space
 
         self.__peao_1 = Peao(self.__posicoes[0][0],self.__posicoes[0][1], self.__brasao_peao, self.__space)
@@ -31,7 +30,16 @@ class Time:
     def goleiro(self):
         return self.__goleiro
 
+    @property
+    def nome(self):
+        return self.__nome
+
     def desenha_time(self, janela):
         for i in self.__lista_peao:
             i.desenha_peao(janela)
         self.__goleiro.desenha_goleiro(janela)
+
+    def reset(self):
+        for i in range(len(self.__lista_peao)):
+            self.__lista_peao[i].body.position = self.__posicoes[i][0], self.__posicoes[i][1]
+            self.__lista_peao[i].body.velocity = 0, 0

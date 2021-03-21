@@ -1,6 +1,6 @@
 import pygame
 import sys
-from BotaoMenu import Botao
+from View.BotaoMenu import Botao
 
 
 class JanelaEscolhaTime:
@@ -46,14 +46,14 @@ class JanelaEscolhaTime:
                         if self.__num_escolhas == 0:
                             self.__escolha1 = 'Fig'
                             self.__num_escolhas += 1
-                        else:
+                        elif self.__escolha1 != 'Fig':
                             self.__num_escolhas = 0
                             self.__escolha2 = 'Fig'
                     if self.__botaoTime2.mouse_sobre(pos):
                         if self.__num_escolhas == 0:
                             self.__escolha1 = 'Ava'
                             self.__num_escolhas += 1
-                        else:
+                        elif self.__escolha1 != 'Ava':
                             self.__num_escolhas = 0
                             self.__escolha2 = 'Ava'
 

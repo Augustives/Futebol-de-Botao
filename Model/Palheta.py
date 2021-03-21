@@ -1,7 +1,6 @@
 import pygame
 from pymunk.pygame_util import *
 from pymunk.vec2d import Vec2d
-from pygame.locals import *
 
 class Palheta:
     def __init__(self):
@@ -18,7 +17,7 @@ class Palheta:
             p0 = to_pygame(b.position, janela)
             x, y = p0
             if self.__pulling:
-                pygame.draw.line(janela, (0, 0, 255), (x + 20, y + 20), pos, 3)
+                pygame.draw.line(janela, (0, 0, 255), (x + 20, y + 20), pos, 5)
 
         if self.__alvo is not None:
             s = self.__alvo.shape
@@ -43,7 +42,7 @@ class Palheta:
                 b = self.__alvo.shape.body
                 self.__alvo = None
                 x, y = b.position
-                p1x, p1y = Vec2d(x, y)
+                p1x, p1y = Vec2d(x+20, y+20)
                 p2x, p2y = from_pygame(event.pos, janela)
                 impulsex, impulsey = 2 * Vec2d(p1x - p2x, p1y - p2y).rotated(-b.angle)
                 if impulsex > 200:

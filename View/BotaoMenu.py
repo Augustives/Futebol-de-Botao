@@ -14,7 +14,7 @@ class Botao:
         janela.blit(self.__imagem, (self.__x, self.__y))
 
         if self.__texto != '':
-            fonte = pygame.font.Font('8-BIT.TTF', 30)
+            fonte = pygame.font.Font('./fonts/8-BIT.TTF', 30)
             texto = fonte.render(self.__texto, 1, (0, 0, 0))
             janela.blit(texto, (self.__x + (self.__largura / 2 - texto.get_width() / 2), (self.__y-5) + (self.__altura / 2 - texto.get_height() / 2)))
 
