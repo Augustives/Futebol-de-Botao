@@ -27,7 +27,7 @@ class Bola():
     def desenha_bola(self, janela):
         x, y = self.__body.position
         janela.blit(self.__imagem, (x+10, y+10))
-        print(x,y)
+
 
     def atrito(self):
         v1, v2 = self.__body.velocity
