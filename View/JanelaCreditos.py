@@ -1,6 +1,6 @@
 import pygame
 import sys
-from View.BotaoMenu import Botao
+from View.BotaoMenu import BotaoMenu
 
 
 class JanelaCreditos:
@@ -8,7 +8,7 @@ class JanelaCreditos:
         self.__janela = janela
         self.__bg = pygame.image.load("./imagens/bg.png")
         self.__clock = pygame.time.Clock()
-        self.__botaoVoltar = Botao(600, 575, 250, 100, "Voltar")
+        self.__botaoVoltar = BotaoMenu(600, 575, 250, 100, "Voltar")
 
     def desenha_creditos(self):
         self.__janela.fill((255, 255, 255))

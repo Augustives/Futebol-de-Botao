@@ -1,6 +1,6 @@
 import pygame
 
-class Botao:
+class BotaoMenu:
     def __init__(self, x, y, largura, altura, texto=''):
         self.__x, self.__y = x, y
         self.__largura, self.__altura = largura, altura
@@ -18,7 +18,7 @@ class Botao:
             texto = fonte.render(self.__texto, 1, (0, 0, 0))
             janela.blit(texto, (self.__x + (self.__largura / 2 - texto.get_width() / 2), (self.__y-5) + (self.__altura / 2 - texto.get_height() / 2)))
 
-    def botao_hover(self, event, pos):
+    def botao_hover(self, pos):
         if self.mouse_sobre(pos):
             self.__imagem = self.__b2
         else:

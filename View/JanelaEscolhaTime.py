@@ -1,6 +1,6 @@
 import pygame
 import sys
-from View.BotaoMenu import Botao
+from View.BotaoMenu import BotaoMenu
 
 
 class JanelaEscolhaTime:
@@ -8,8 +8,8 @@ class JanelaEscolhaTime:
         self.__janela = janela
         self.__bg = pygame.image.load("./imagens/bg.png")
         self.__clock = pygame.time.Clock()
-        self.__botaoTime1 = Botao(600, 450, 250, 100, "Fig")
-        self.__botaoTime2 = Botao(600, 575, 250, 100, "Ava")
+        self.__botaoTime1 = BotaoMenu(600, 450, 250, 100, "Fig")
+        self.__botaoTime2 = BotaoMenu(600, 575, 250, 100, "Ava")
         self.__num_escolhas = 0
         self.__escolha1 = None
         self.__escolha2 = None

@@ -1,6 +1,6 @@
 import pygame
 import sys
-from View.BotaoMenu import Botao
+from View.BotaoMenu import BotaoMenu
 
 
 class MenuPrincipal:
@@ -8,8 +8,8 @@ class MenuPrincipal:
         self.__janela = janela
         self.__clock = pygame.time.Clock()
         self.__bg = pygame.image.load("./imagens/bg.png")
-        self.__botaoStart = Botao(575, 400, 250, 100, "Start")
-        self.__botaoCreditos = Botao(575, 525, 250, 100, "Credits")
+        self.__botaoStart = BotaoMenu(575, 400, 250, 100, "Start")
+        self.__botaoCreditos = BotaoMenu(575, 525, 250, 100, "Credits")
 
     def desenha_mp(self):
         self.__janela.fill((255, 255, 255))

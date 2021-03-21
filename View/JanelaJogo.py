@@ -1,6 +1,6 @@
 import pygame
 import sys
-from View.BotaoMenu import Botao
+from View.BotaoMenu import BotaoMenu
 from View.Placar import Placar
 from View.BarraForca import BarraForca
 from Model.Palheta import Palheta
@@ -10,7 +10,7 @@ class JanelaJogo:
     def __init__(self, janela, campo):
         self.__janela = janela
         self.__clock = pygame.time.Clock()
-        self.__botaoVoltar = Botao(90, 600, 250, 100, "Voltar")
+        self.__botaoVoltar = BotaoMenu(90, 600, 250, 100, "Voltar")
         self.__barraForca = BarraForca(65, 500, 300, 30)
         self.__campo = campo
         self.__placar = Placar(40, 100, 350, 60, self.__campo.time1.nome, self.__campo.time2.nome)
