@@ -1,6 +1,6 @@
 import pygame
 import sys
-from BotaoMenu import Botao
+from View.BotaoMenu import Botao
 
 
 class MenuPrincipal:
@@ -14,7 +14,7 @@ class MenuPrincipal:
     def desenha_mp(self):
         self.__janela.fill((255, 255, 255))
         self.__janela.blit(self.__bg, (0, 0))
-        self.__janela.blit((pygame.transform.scale(pygame.image.load("./imagens/titulo.png").convert(), [600, 200])), (400,100))
+        self.__janela.blit((pygame.transform.scale(pygame.image.load("./imagens/titulo.png").convert(), [600, 200])), (400, 100))
         self.__botaoStart.desenha_botao(self.__janela)
         self.__botaoCreditos.desenha_botao(self.__janela)
 

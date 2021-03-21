@@ -1,15 +1,16 @@
 import pygame
 import pymunk
-from Lado_campo import Lado_do_campo
-from Time import Time
-from Bola import  Bola
+from Model.Lado_campo import Lado_do_campo
+from Model.Time import Time
+from Model.Bola import Bola
+from Model.Gol import Gol
 
 class Campo():
 
     def __init__(self):
         self.__space = pymunk.Space()
-        self.__bola = self.__bola = Bola(860, 380, self.__space)
-        self.__gol = None
+        self.__bola = Bola(860, 380, self.__space)
+        self.__gol = Gol()
         self.__laterais = pygame.sprite.Group()
         self.__esquerdo = [(500, 200), (500, 575), (790, 200), (790, 575), (650, 375), (455, 400)]
         self.__direito = [(1175, 200), (1175, 575), (890, 200), (890, 575), (1010, 375), (1255, 400)]
@@ -32,19 +33,20 @@ class Campo():
     def bola(self):
         return self.__bola
 
+    @property
+    def gol(self):
+        return self.__gol
+
     def colisao_campo(self):
         Lado_do_campo([420, 100], [420, 655], self.__space, 2)
         Lado_do_campo([1290, 100], [1290, 655], self.__space, 2)
         Lado_do_campo([420, 100], [1290, 100], self.__space, 2)
         Lado_do_campo([420, 655], [1290, 655], self.__space, 2)
 
-    def reset(self):
-        self.__space = pymunk.Space()
-
     def desenha_campo(self, janela):
         grupo = pygame.sprite.Group()
         gramado = pygame.sprite.Sprite(grupo)
-        gramado.image = pygame.image.load('imagens/grama.png')
+        gramado.image = pygame.image.load('./imagens/grama.png')
         gramado.image = pygame.transform.scale(gramado.image, [900, 600])
         gramado.rect = pygame.Rect(430, 100, 900, 600, )
         grupo.draw(janela)

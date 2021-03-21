@@ -1,10 +1,9 @@
 import pygame
 import sys
-from BotaoMenu import Botao
-from Campo import Campo
-from Placar import Placar
-from BarraForca import BarraForca
-from Palheta import Palheta
+from View.BotaoMenu import Botao
+from View.Placar import Placar
+from View.BarraForca import BarraForca
+from Model.Palheta import Palheta
 
 
 class JanelaJogo:
@@ -12,15 +11,10 @@ class JanelaJogo:
         self.__janela = janela
         self.__clock = pygame.time.Clock()
         self.__botaoVoltar = Botao(90, 600, 250, 100, "Voltar")
-        self.__placar = Placar(40, 100, 350, 60)
         self.__barraForca = BarraForca(65, 500, 300, 30)
         self.__campo = campo
-
+        self.__placar = Placar(40, 100, 350, 60, self.__campo.time1.nome, self.__campo.time2.nome)
         self.__palheta = Palheta()
-
-        self.__escolha1 = None
-        self.__escolha2 = None
-
 
     def desenha_tabuleiro(self):
         self.__janela.fill((200, 200, 200))
@@ -38,6 +32,11 @@ class JanelaJogo:
         for i in (self.__campo.time1.lista_peao + self.__campo.time2.lista_peao):
             i.atrito()
 
+    def reset(self):
+        self.__campo.bola.reset()
+        self.__campo.time1.reset()
+        self.__campo.time2.reset()
+
     def vez_de_quem(self):
         pass
 
@@ -46,6 +45,12 @@ class JanelaJogo:
         self.__campo.colisao_campo()
         gol_mov = 0
         while aberto:
+            if self.__campo.gol.verifica_gol(self.__campo.bola) == 1:
+                self.reset()
+                self.__placar.incrementa(2)
+            elif self.__campo.gol.verifica_gol(self.__campo.bola) == 2:
+                self.reset()
+                self.__placar.incrementa(1)
             pos = pygame.mouse.get_pos()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

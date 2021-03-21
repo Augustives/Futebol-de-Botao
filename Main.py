@@ -1,4 +1,4 @@
-from ControladorJogo import ControladorJogo
+from Control.ControladorJogo import ControladorJogo
 
 CJogo = ControladorJogo()
 
