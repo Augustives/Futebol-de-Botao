@@ -71,7 +71,7 @@ class JanelaJogo:
                         aberto = False
 
                 self.__palheta.aplica_impulso(event, self.__campo.time1.lista_peao, self.__campo.time2.lista_peao, pos, self.__janela)
-                self.__botaoVoltar.botao_hover(event, pos)
+                self.__botaoVoltar.botao_hover(pos)
 
             self.desenha_tabuleiro()
             self.__palheta.desenha_palheta(pos, self.__janela)

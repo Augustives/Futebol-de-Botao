@@ -57,8 +57,8 @@ class JanelaEscolhaTime:
                             self.__num_escolhas = 0
                             self.__escolha2 = 'Ava'
 
-                self.__botaoTime1.botao_hover(event, pos)
-                self.__botaoTime2.botao_hover(event, pos)
+                self.__botaoTime1.botao_hover(pos)
+                self.__botaoTime2.botao_hover(pos)
 
             if self.__escolha2 is not None:
                 return True

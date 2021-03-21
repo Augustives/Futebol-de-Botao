@@ -39,8 +39,8 @@ class MenuPrincipal:
                     if self.__botaoCreditos.mouse_sobre(pos):
                         return "creditos"
 
-                self.__botaoStart.botao_hover(event, pos)
-                self.__botaoCreditos.botao_hover(event, pos)
+                self.__botaoStart.botao_hover(pos)
+                self.__botaoCreditos.botao_hover(pos)
 
             self.__clock.tick(60)
             pygame.display.update()
