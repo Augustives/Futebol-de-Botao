@@ -3,6 +3,7 @@ from View.MenuPrincipal import MenuPrincipal
 from View.JanelaJogo import JanelaJogo
 from View.JanelaCreditos import JanelaCreditos
 from Model.Campo import Campo
+from Model.Palheta import Palheta
 from View.JanelaEscolhaTime import JanelaEscolhaTime
 from View.JanelaEscolheTurno import JanelaEscolhaTurno
 
@@ -12,6 +13,7 @@ class ControladorJogo():
         self.__janela = None
         self.desenha_janela(1400, 800)
         self.__campo = Campo()
+        self.__palheta = Palheta()
         self.__telaEscolhe = JanelaEscolhaTime(self.__janela)
         self.__telaTurnos = JanelaEscolhaTurno(self.__janela)
         self.__telaJogo = None
@@ -31,9 +33,9 @@ class ControladorJogo():
             if self.__menuPrincipal.loop() == "times":
                 if self.__telaEscolhe.loop() == "turnos":
                     self.__campo.cria_time(self.__telaEscolhe.escolha1, self.__telaEscolhe.escolha2)
-                    self.__telaJogo = JanelaJogo(self.__janela, self.__campo)
                     if self.__telaTurnos.loop() == "jogo":
-                        self.__telaJogo.maxTurnos = self.__telaTurnos.turnos
+                        self.__campo.turnos = self.__telaTurnos.turnos
+                        self.__telaJogo = JanelaJogo(self.__janela, self.__campo, self.__palheta)
                         self.__telaJogo.loop()
             else:
                 self.__telaCreditos.loop()

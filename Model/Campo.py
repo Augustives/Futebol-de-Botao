@@ -16,7 +16,15 @@ class Campo():
         self.__direito = [(1175, 200), (1175, 575), (890, 200), (890, 575), (1010, 375), (1255, 400)]
         self.__time1 = None
         self.__time2 = None
+        self.__turnos = None
 
+    @property
+    def turnos(self):
+        return self.__turnos
+
+    @turnos.setter
+    def turnos(self, turnos):
+        self.__turnos = turnos
 
     @property
     def space(self):
@@ -75,3 +83,4 @@ class Campo():
         elif escolha2 =="Fig":
             self.__time2 = Time('Figueirence', 'imagens/brasao_figueirence.png', 'imagens/brasao_figueirence_goleiro.png'
                              , self.__direito, self.__space)
+

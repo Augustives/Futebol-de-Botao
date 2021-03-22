@@ -7,17 +7,16 @@ from Model.Palheta import Palheta
 from View.IndicadorTurnos import IndicadorTurnos
 
 class JanelaJogo:
-    def __init__(self, janela, campo):
+    def __init__(self, janela, campo, palheta):
         self.__janela = janela
         self.__campo = campo
-        self.__palheta = Palheta()
+        self.__palheta = palheta
         self.__clock = pygame.time.Clock()
         self.__botaoVoltar = BotaoMenu(90, 620, 250, 80, "Voltar", 20)
         self.__botaoVez = BotaoMenu(90, 520, 250, 80, "Passar Turno", 20)
         self.__barraForca = BarraForca(65, 500, 300, 30)
         self.__placar = Placar(40, 100, 350, 60, self.__campo.time1.nome, self.__campo.time2.nome)
         self.__indicadorTurnos = IndicadorTurnos(115, 40, 200, 50)
-        self.__maxTurnos = 10
         self.__vez = 1
 
     @property
