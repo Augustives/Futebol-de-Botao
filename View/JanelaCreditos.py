@@ -8,7 +8,7 @@ class JanelaCreditos:
         self.__janela = janela
         self.__bg = pygame.image.load("./imagens/bg.png")
         self.__clock = pygame.time.Clock()
-        self.__botaoVoltar = BotaoMenu(600, 575, 250, 100, "Voltar")
+        self.__botaoVoltar = BotaoMenu(600, 575, 250, 100, "Voltar", 30)
 
     def desenha_creditos(self):
         self.__janela.fill((255, 255, 255))
@@ -25,12 +25,9 @@ class JanelaCreditos:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        aberto = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.__botaoVoltar.mouse_sobre(pos):
-                        aberto = False
+                        return "menu"
                 self.__botaoVoltar.botao_hover(pos)
 
             self.__clock.tick(60)

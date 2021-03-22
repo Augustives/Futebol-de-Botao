@@ -43,3 +43,10 @@ class Time:
         for i in range(len(self.__lista_peao)):
             self.__lista_peao[i].body.position = self.__posicoes[i][0], self.__posicoes[i][1]
             self.__lista_peao[i].body.velocity = 0, 0
+            self.__goleiro.reset()
+
+    def on_move(self):
+        for i in self.__lista_peao:
+            if i.body.velocity != (0, 0):
+                return True
+

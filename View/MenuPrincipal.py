@@ -8,8 +8,8 @@ class MenuPrincipal:
         self.__janela = janela
         self.__clock = pygame.time.Clock()
         self.__bg = pygame.image.load("./imagens/bg.png")
-        self.__botaoStart = BotaoMenu(575, 400, 250, 100, "Start")
-        self.__botaoCreditos = BotaoMenu(575, 525, 250, 100, "Credits")
+        self.__botaoStart = BotaoMenu(575, 400, 250, 100, "Start", 30)
+        self.__botaoCreditos = BotaoMenu(575, 525, 250, 100, "Credits", 30)
 
     def desenha_mp(self):
         self.__janela.fill((255, 255, 255))
@@ -28,13 +28,9 @@ class MenuPrincipal:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        pygame.quit()
-                        sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.__botaoStart.mouse_sobre(pos):
-                        return "jogo"
+                        return "times"
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.__botaoCreditos.mouse_sobre(pos):
                         return "creditos"

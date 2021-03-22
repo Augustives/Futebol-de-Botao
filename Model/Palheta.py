@@ -26,9 +26,9 @@ class Palheta:
             x, y = p
             pygame.draw.circle(janela, (0, 0, 255), (x + 20, y + 20), r + 5, 3)
 
-    def aplica_impulso(self, event, time_1, time_2, pos, janela):
+    def aplica_impulso(self, event, time, pos, janela):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            for i in (time_1 + time_2):
+            for i in time:
                 a, b = pos
                 i.body.angle = ((a-20, b-20) - i.body.position).angle
                 dist = i.shape.point_query(pos).distance
@@ -54,3 +54,5 @@ class Palheta:
                 elif impulsey < -200:
                     impulsey = -200
                 b.apply_impulse_at_local_point((impulsex, impulsey))
+
+

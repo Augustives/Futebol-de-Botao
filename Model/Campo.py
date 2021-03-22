@@ -17,6 +17,7 @@ class Campo():
         self.__time1 = None
         self.__time2 = None
 
+
     @property
     def space(self):
         return self.__space

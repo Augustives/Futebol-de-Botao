@@ -1,10 +1,11 @@
 import pygame
 
 class BotaoMenu:
-    def __init__(self, x, y, largura, altura, texto=''):
+    def __init__(self, x, y, largura, altura, texto, fontsize):
         self.__x, self.__y = x, y
         self.__largura, self.__altura = largura, altura
         self.__texto = texto
+        self.__fontSize = fontsize
         self.__b1 = pygame.transform.scale(pygame.image.load("./imagens/botao01.png").convert(), [self.__largura, self.__altura])
         self.__b2 = pygame.transform.scale(pygame.image.load("./imagens/botao02.png").convert(), [self.__largura, self.__altura])
         self.__imagem = self.__b1
@@ -14,7 +15,7 @@ class BotaoMenu:
         janela.blit(self.__imagem, (self.__x, self.__y))
 
         if self.__texto != '':
-            fonte = pygame.font.Font('./fonts/8-BIT.TTF', 30)
+            fonte = pygame.font.Font('./fonts/8-BIT.TTF', self.__fontSize)
             texto = fonte.render(self.__texto, 1, (0, 0, 0))
             janela.blit(texto, (self.__x + (self.__largura / 2 - texto.get_width() / 2), (self.__y-5) + (self.__altura / 2 - texto.get_height() / 2)))
 
