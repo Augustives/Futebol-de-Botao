@@ -4,6 +4,7 @@ from Model.Lado_campo import Lado_do_campo
 from Model.Time import Time
 from Model.Bola import Bola
 from Model.Gol import Gol
+from Model.Jogador import Jogador
 
 class Campo():
 
@@ -16,15 +17,26 @@ class Campo():
         self.__direito = [(1175, 200), (1175, 575), (890, 200), (890, 575), (1010, 375), (1255, 400)]
         self.__time1 = None
         self.__time2 = None
-        self.__turnos = None
+        self.__jogador1 = Jogador()
+        self.__jogador2 = Jogador()
+        self.__turno_atual = 0
+        self.__turno_max = None
 
     @property
-    def turnos(self):
-        return self.__turnos
+    def turno_atual(self):
+        return self.__turno_atual
 
-    @turnos.setter
-    def turnos(self, turnos):
-        self.__turnos = turnos
+    @turno_atual.setter
+    def turno_atual(self, turnos):
+        self.__turno_atual_ = turnos
+
+    @property
+    def turno_max(self):
+        return self.__turno_max
+
+    @turno_max.setter
+    def turno_max(self, turnos):
+        self.__turno_max = turnos
 
     @property
     def space(self):

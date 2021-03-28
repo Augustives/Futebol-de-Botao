@@ -3,7 +3,6 @@ import sys
 from View.BotaoMenu import BotaoMenu
 from View.Placar import Placar
 from View.BarraForca import BarraForca
-from Model.Palheta import Palheta
 from View.IndicadorTurnos import IndicadorTurnos
 
 class JanelaJogo:

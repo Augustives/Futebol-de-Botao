@@ -10,11 +10,11 @@ class JanelaEscolhaTurno:
         self.__clock = pygame.time.Clock()
         self.__botaoTurnos10 = BotaoMenu(600, 450, 250, 100, "10", 30)
         self.__botaoTurnos20 = BotaoMenu(600, 575, 250, 100, "20", 30)
-        self.__turnos = None
+        self.__escolha_turnos = None
 
     @property
-    def turnos(self):
-        return self.__turnos
+    def escolha_turnos(self):
+        return self.__escolha_turnos
 
     def desenha_escolha(self):
         self.__janela.fill((255, 255, 255))
@@ -35,14 +35,14 @@ class JanelaEscolhaTurno:
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.__botaoTurnos10.mouse_sobre(pos):
-                        self.__turnos = 10
+                        self.__escolha_turnos = 10
                     if self.__botaoTurnos20.mouse_sobre(pos):
-                        self.__turnos = 20
+                        self.__escolha_turnos = 20
 
                 self.__botaoTurnos10.botao_hover(pos)
                 self.__botaoTurnos20.botao_hover(pos)
 
-            if self.__turnos is not None:
+            if self.__escolha_turnos is not None:
                 return "jogo"
 
             self.__clock.tick(60)
