@@ -26,6 +26,13 @@ class Peao():
     def desenha_peao(self, janela):
         janela.blit(self.__imagem, self.__body.position)
 
+    def parado(self):
+        x, y = self.__body.velocity
+        if x == 0 and y == 0:
+            return True
+        else:
+            return False
+
     def atrito(self):
         v1, v2 = self.__body.velocity
 
@@ -37,6 +44,9 @@ class Peao():
             v2 *= self.__atrito
         elif v2 < 0:
             v2 *= self.__atrito
+
+        if v1 < 0.5 and v1 > -0.5 and v2 < 0.5 and v2 > -0.5:
+            v1, v2 = 0, 0
 
         self.__body.velocity = v1, v2
 

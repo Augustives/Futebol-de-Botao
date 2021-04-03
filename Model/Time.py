@@ -21,7 +21,6 @@ class Time:
 
         self.__lista_peao = [self.__peao_1, self.__peao_2, self.__peao_3, self.__peao_4, self.__peao_5]
 
-
     @property
     def lista_peao(self):
         return self.__lista_peao
@@ -45,8 +44,9 @@ class Time:
             self.__lista_peao[i].body.velocity = 0, 0
             self.__goleiro.reset()
 
-    def on_move(self):
-        for i in self.__lista_peao:
-            if i.body.velocity != (0, 0):
-                return True
-
+    def parado(self):
+        while True:
+            for i in self.__lista_peao:
+                if not i.parado():
+                    return False
+            return True

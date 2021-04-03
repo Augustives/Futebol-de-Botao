@@ -15,12 +15,66 @@ class Campo():
         self.__laterais = pygame.sprite.Group()
         self.__esquerdo = [(500, 200), (500, 575), (790, 200), (790, 575), (650, 375), (455, 400)]
         self.__direito = [(1175, 200), (1175, 575), (890, 200), (890, 575), (1010, 375), (1255, 400)]
+
         self.__time1 = None
         self.__time2 = None
-        self.__jogador1 = Jogador()
-        self.__jogador2 = Jogador()
-        self.__turno_atual = 0
-        self.__turno_max = None
+        self.__gols1 = 0
+        self.__gols2 = 0
+
+        self.__turno_atual = 1
+        self.__turno_max = 99
+
+        self.__vez, self.__primeira_rodada = 1, True
+        self.__nao_moveu = True
+        self.__gol_mov = 0
+
+    @property
+    def gols1(self):
+        return self.__gols1
+
+    @gols1.setter
+    def gols1(self, value):
+        self.__gols1 = value
+
+    @property
+    def gols2(self):
+        return self.__gols2
+
+    @gols2.setter
+    def gols2(self, value):
+        self.__gols2 = value
+
+    @property
+    def vez(self):
+        return self.__vez
+
+    @vez.setter
+    def vez(self, value):
+        self.__vez = value
+
+    @property
+    def primeira_rodade(self):
+        return self.__primeira_rodada
+
+    @primeira_rodade.setter
+    def primeira_rodade(self, value):
+        self.__primeira_rodada = value
+
+    @property
+    def nao_moveu(self):
+        return self.__nao_moveu
+
+    @nao_moveu.setter
+    def nao_moveu(self, value):
+        self.__nao_moveu = value
+
+    @property
+    def gol_mov(self):
+        return self.__gol_mov
+
+    @gol_mov.setter
+    def gol_mov(self, value):
+        self.__gol_mov = value
 
     @property
     def turno_atual(self):
@@ -28,7 +82,7 @@ class Campo():
 
     @turno_atual.setter
     def turno_atual(self, turnos):
-        self.__turno_atual_ = turnos
+        self.__turno_atual = turnos
 
     @property
     def turno_max(self):
@@ -103,3 +157,8 @@ class Campo():
             self.__time2 = Time('Figueirence', 'imagens/brasao_figueirence.png', 'imagens/brasao_figueirence_goleiro.png'
                              , self.__direito, self.__space)
 
+    def parado(self):
+        if self.__time1.parado() and self.time2.parado() and self.__bola.parado():
+            return True
+        else:
+            return False

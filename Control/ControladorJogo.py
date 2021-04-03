@@ -25,9 +25,7 @@ class ControladorJogo():
         self.__telaJogo = JanelaJogo(self.__janela)
         self.__telaCreditos = JanelaCreditos(self.__janela)
 
-        self.__vez = 1
-        self.__contador_vez = 0
-        self.__gol_mov = 0
+
 
     def desenha_janela(self, x, y):
         self.__janela = pygame.display.set_mode((x, y))
@@ -44,43 +42,69 @@ class ControladorJogo():
         if self.__campo.gol.verifica_gol(self.__campo.bola) == 1:
             self.reset()
             self.__telaJogo.placar.incrementa(2)
+            self.__campo.gols2 += 1
         elif self.__campo.gol.verifica_gol(self.__campo.bola) == 2:
             self.reset()
             self.__telaJogo.placar.incrementa(1)
+            self.__campo.gols1 += 1
+
+    def verifica_vencedor(self):
+        if self.__campo.turno_atual > self.__campo.turno_max:
+            if self.__campo.gols1 > self.__campo.gols2:
+                return True, '   ' + self.__campo.time1.nome + ' Venceu'
+            elif self.__campo.gols1 < self.__campo.gols2:
+                return True, '   ' + self.__campo.time2.nome + ' Venceu'
+            else:
+                return True, '      Empate'
+        else:
+            return False, ''
 
     def passa_vez(self, event):
         if event.UI == 'VEZ':
-            self.__vez += 1
-            self.__contador_vez += 1
-            if self.__contador_vez % 2 == 0:
+            if not self.__campo.parado():
+                self.__telaJogo.notifica = True
+            else:
+                self.__campo.vez += 1
+                self.__campo.turno_atual += 1
+                if self.__campo.vez >= 3:
+                    self.__campo.vez = 1
+                self.__campo.nao_moveu = True
+                self.__telaJogo.notifica = False
                 self.__telaJogo.indicadorTurnos.incrementa()
-            if self.__vez > 4:
-                self.__vez = 1
+
 
     def handle_palheta(self, event, pos):
         if self.__campo.time1 is not None and self.__campo.time2 is not None:
-            if self.__vez == 1:
-                self.__palheta.aplica_impulso(event, self.__campo.time1.lista_peao, pos,
-                                          self.__janela)
-            elif self.__vez == 3:
-                self.__palheta.aplica_impulso(event, self.__campo.time2.lista_peao, pos,
-                                              self.__janela)
+            if self.__campo.vez == 1 and self.__campo.nao_moveu:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    self.__palheta.seleciona_com_palheta(self.__campo.time1.lista_peao, pos)
+                if event.type == pygame.MOUSEBUTTONUP:
+                    self.__palheta.aplica_impulso(event, self.__janela)
+                    if not self.__campo.parado():
+                        self.__campo.nao_moveu = False
+            elif self.__campo.vez == 2 and self.__campo.nao_moveu:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    self.__palheta.seleciona_com_palheta(self.__campo.time2.lista_peao, pos)
+                if event.type == pygame.MOUSEBUTTONUP:
+                    self.__palheta.aplica_impulso(event, self.__janela)
+                    if not self.__campo.parado():
+                        self.__campo.nao_moveu = False
 
     def handle_move_goleiro(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_s:
-                self.__gol_mov = 3.5
+                self.__campo.gol_mov = 3.5
             if event.key == pygame.K_a:
-                self.__gol_mov = -3.5
+                self.__campo.gol_mov = -3.5
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_s or event.key == pygame.K_a:
-                self.__gol_mov = 0
+                self.__campo.gol_mov = 0
 
     def move_goleiro(self):
-        if self.__vez == 2:
-            self.__campo.time1.goleiro.move(self.__gol_mov)
-        elif self.__vez == 4:
-            self.__campo.time2.goleiro.move(self.__gol_mov)
+        if self.__campo.vez == 1 and self.__campo.time1 is not None and self.__campo.time2 is not None:
+            self.__campo.time1.goleiro.move(self.__campo.gol_mov)
+        elif self.__campo.vez == 2 and self.__campo.time1 is not None and self.__campo.time2 is not None:
+            self.__campo.time2.goleiro.move(self.__campo.gol_mov)
 
     def set_max_turnos(self):
         self.__campo.turno_max = self.__telaTurnos.escolha_turnos
@@ -108,19 +132,26 @@ class ControladorJogo():
             self.__view_atual = "JOGO"
 
     def event_handler(self):
+        x, y = self.verifica_vencedor()
         pos = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.USEREVENT:
                 self.view_handler(event)
-                self.passa_vez(event)
-            self.handle_move_goleiro(event)
-            self.handle_palheta(event, pos)
+                if not x:
+                    self.passa_vez(event)
+            if not x:
+                self.handle_move_goleiro(event)
+                self.handle_palheta(event, pos)
 
         self.__palheta.desenha_palheta(pos, self.__janela)
         self.move_goleiro()
         self.verifica_gol()
         if self.__campo.time1 is not None and self.__campo.time2 is not None:
             self.__campo.atrito()
+        if x:
+            self.__telaJogo.notifica_vencedor(y)
+
+
 
     def draw_view(self):
         if self.__view_atual == "MP":

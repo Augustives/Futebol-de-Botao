@@ -26,33 +26,33 @@ class Palheta:
             x, y = p
             pygame.draw.circle(janela, (0, 0, 255), (x + 20, y + 20), r + 5, 3)
 
-    def aplica_impulso(self, event, time, pos, janela):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            for i in time:
-                a, b = pos
-                i.body.angle = ((a-20, b-20) - i.body.position).angle
-                dist = i.shape.point_query(pos).distance
-                if dist - 20 < 0:
-                    self.__alvo = i
-                    self.__pulling = True
+    def seleciona_com_palheta(self, time, pos):
+        for i in time:
+            a, b = pos
+            i.body.angle = ((a - 20, b - 20) - i.body.position).angle
+            dist = i.shape.point_query(pos).distance
+            if dist - 20 < 0:
+                self.__alvo = i
+                self.__pulling = True
 
-        if event.type == pygame.MOUSEBUTTONUP:
-            if self.__pulling:
-                self.__pulling = False
-                b = self.__alvo.shape.body
-                self.__alvo = None
-                x, y = b.position
-                p1x, p1y = Vec2d(x+20, y+20)
-                p2x, p2y = from_pygame(event.pos, janela)
-                impulsex, impulsey = 2 * Vec2d(p1x - p2x, p1y - p2y).rotated(-b.angle)
-                if impulsex > 200:
-                    impulsex = 200
-                elif impulsex < -200:
-                    impulsex = -200
-                if impulsey > 200:
-                    impulsey = 200
-                elif impulsey < -200:
-                    impulsey = -200
-                b.apply_impulse_at_local_point((impulsex, impulsey))
+
+    def aplica_impulso(self, event, janela):
+        if self.__pulling:
+            self.__pulling = False
+            b = self.__alvo.shape.body
+            self.__alvo = None
+            x, y = b.position
+            p1x, p1y = Vec2d(x + 20, y + 20)
+            p2x, p2y = from_pygame(event.pos, janela)
+            impulsex, impulsey = 2 * Vec2d(p1x - p2x, p1y - p2y).rotated(-b.angle)
+            if impulsex > 200:
+                impulsex = 200
+            elif impulsex < -200:
+                impulsex = -200
+            if impulsey > 200:
+                impulsey = 200
+            elif impulsey < -200:
+                impulsey = -200
+            b.apply_impulse_at_local_point((impulsex, impulsey))
 
 
