@@ -15,20 +15,14 @@ class JanelaCreditos:
         self.__janela.blit(self.__bg, (0, 0))
         self.__botaoVoltar.desenha_botao(self.__janela)
 
-    def loop(self):
-        aberto = True
-        while aberto:
-            self.desenha_creditos()
-
-            for event in pygame.event.get():
-                pos = pygame.mouse.get_pos()
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.__botaoVoltar.mouse_sobre(pos):
-                        return "menu"
-                self.__botaoVoltar.botao_hover(pos)
-
-            self.__clock.tick(60)
-            pygame.display.update()
+    def check_events(self):
+        for event in pygame.event.get():
+            pos = pygame.mouse.get_pos()
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if self.__botaoVoltar.mouse_sobre(pos):
+                    event = pygame.event.Event(pygame.USEREVENT, UI='MP')
+                    pygame.event.post(event)
+            self.__botaoVoltar.botao_hover(pos)

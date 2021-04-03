@@ -130,6 +130,8 @@ class ControladorJogo():
             self.set_times()
             self.set_max_turnos()
             self.__view_atual = "JOGO"
+        elif event.UI == 'CRED':
+            self.__view_atual = "CRED"
 
     def event_handler(self):
         x, y = self.verifica_vencedor()
@@ -167,6 +169,10 @@ class ControladorJogo():
             self.__telaJogo.desenha_jogo()
             self.__campo.desenha_campo(self.__janela)
             self.__telaJogo.check_events()
+        elif self.__view_atual == "CRED":
+            self.__telaCreditos.desenha_creditos()
+            self.__telaCreditos.check_events()
+
 
     def comeca(self):
         while True:
