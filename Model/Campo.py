@@ -64,6 +64,11 @@ class Campo():
         Lado_do_campo([420, 100], [1290, 100], self.__space, 2)
         Lado_do_campo([420, 655], [1290, 655], self.__space, 2)
 
+    def atrito(self):
+        self.__bola.atrito()
+        for i in (self.__time1.lista_peao + self.__time2.lista_peao):
+            i.atrito()
+
     def desenha_campo(self, janela):
         grupo = pygame.sprite.Group()
         gramado = pygame.sprite.Sprite(grupo)
@@ -71,9 +76,7 @@ class Campo():
         gramado.image = pygame.transform.scale(gramado.image, [900, 600])
         gramado.rect = pygame.Rect(430, 100, 900, 600, )
         grupo.draw(janela)
-
         self.__laterais.add()
-
         transparente = pygame.Color(255, 255, 255, 255)
         pygame.draw.rect(janela, transparente, (450, 125, 850, 545), width=6)
         pygame.draw.rect(janela, transparente, (450, 270, 100, 260), width=6)
@@ -81,6 +84,10 @@ class Campo():
         pygame.draw.circle(janela, transparente, (880, 400), 120, width=6)
         pygame.draw.line(janela, transparente, (880, 125), (880, 670), width=6)
         pygame.draw.circle(janela, (255, 255, 255), (880, 400), 10, )
+        self.__time1.desenha_time(janela)
+        self.__time2.desenha_time(janela)
+        self.__bola.desenha_bola(janela)
+
 
     def cria_time(self, escolha1, escolha2):
         if escolha1 == "Ava":

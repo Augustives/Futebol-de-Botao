@@ -18,25 +18,20 @@ class MenuPrincipal:
         self.__botaoStart.desenha_botao(self.__janela)
         self.__botaoCreditos.desenha_botao(self.__janela)
 
-    def loop(self):
-        aberto = True
-        while aberto:
-            self.desenha_mp()
+    def check_events(self):
+        pos = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if self.__botaoStart.mouse_sobre(pos):
+                    event = pygame.event.Event(pygame.USEREVENT, UI='TIME')
+                    pygame.event.post(event)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if self.__botaoCreditos.mouse_sobre(pos):
+                    event = pygame.event.Event(pygame.USEREVENT, UI='CRED')
+                    pygame.event.post(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
 
-            for event in pygame.event.get():
-                pos = pygame.mouse.get_pos()
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.__botaoStart.mouse_sobre(pos):
-                        return "times"
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.__botaoCreditos.mouse_sobre(pos):
-                        return "creditos"
-
-                self.__botaoStart.botao_hover(pos)
-                self.__botaoCreditos.botao_hover(pos)
-
-            self.__clock.tick(60)
-            pygame.display.update()
+            self.__botaoStart.botao_hover(pos)
+            self.__botaoCreditos.botao_hover(pos)
