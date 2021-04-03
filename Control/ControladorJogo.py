@@ -101,9 +101,11 @@ class ControladorJogo():
                 self.__campo.gol_mov = 0
 
     def move_goleiro(self):
-        if self.__campo.vez == 1 and self.__campo.time1 is not None and self.__campo.time2 is not None:
+        if self.__campo.vez == 1 and self.__campo.time1 is not None and self.__campo.time2 is not None \
+                and self.__campo.nao_moveu:
             self.__campo.time1.goleiro.move(self.__campo.gol_mov)
-        elif self.__campo.vez == 2 and self.__campo.time1 is not None and self.__campo.time2 is not None:
+        elif self.__campo.vez == 2 and self.__campo.time1 is not None and self.__campo.time2 is not None \
+                and self.__campo.nao_moveu:
             self.__campo.time2.goleiro.move(self.__campo.gol_mov)
 
     def set_max_turnos(self):
