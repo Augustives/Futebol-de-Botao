@@ -62,14 +62,14 @@ class ControladorJogo():
     def passa_vez(self, event):
         if event.UI == 'VEZ':
             if not self.__campo.parado():
-                self.__telaJogo.notifica = True
+                self.__telaJogo.notifica_parado = True
             else:
                 self.__campo.vez += 1
                 self.__campo.turno_atual += 1
                 if self.__campo.vez >= 3:
                     self.__campo.vez = 1
                 self.__campo.nao_moveu = True
-                self.__telaJogo.notifica = False
+                self.__telaJogo.notifica_parado = False
                 self.__telaJogo.indicadorTurnos.incrementa()
 
 

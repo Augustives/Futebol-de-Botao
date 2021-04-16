@@ -2,7 +2,6 @@ import pygame
 import sys
 from View.BotaoMenu import BotaoMenu
 from View.Placar import Placar
-from View.BarraForca import BarraForca
 from View.IndicadorTurnos import IndicadorTurnos
 
 
@@ -11,10 +10,9 @@ class JanelaJogo:
         self.__janela = janela
         self.__botaoVoltar = BotaoMenu(90, 620, 250, 80, "Voltar", 20)
         self.__botaoVez = BotaoMenu(90, 520, 250, 80, "Passar Turno", 20)
-        self.__barraForca = BarraForca(65, 500, 300, 30)
         self.__placar = Placar(40, 100, 350, 60, "", "")
         self.__indicadorTurnos = IndicadorTurnos(115, 40, 200, 50)
-        self.__notifica = False
+        self.__notifica_parado = False
 
     @property
     def placar(self):
@@ -25,12 +23,12 @@ class JanelaJogo:
         return self.__indicadorTurnos
 
     @property
-    def notifica(self):
-        return self.__notifica
+    def notifica_parado(self):
+        return self.__notifica_parado
 
-    @notifica.setter
-    def notifica(self, value):
-        self.__notifica = value
+    @notifica_parado.setter
+    def notifica_parado(self, value):
+        self.__notifica_parado = value
 
     def desenha_jogo(self):
         self.__janela.fill((200, 200, 200))
@@ -38,9 +36,8 @@ class JanelaJogo:
         self.__indicadorTurnos.desenha_turnos(self.__janela)
         self.__botaoVez.desenha_botao(self.__janela)
         self.__botaoVoltar.desenha_botao(self.__janela)
-        if self.__notifica:
+        if self.__notifica_parado:
             self.notifica_movimento()
-
 
     def notifica_movimento(self):
         font = pygame.font.Font('./fonts/8-BIT.TTF', 15)

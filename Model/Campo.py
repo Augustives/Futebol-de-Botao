@@ -4,7 +4,6 @@ from Model.Lado_campo import Lado_do_campo
 from Model.Time import Time
 from Model.Bola import Bola
 from Model.Gol import Gol
-from Model.Jogador import Jogador
 
 class Campo():
 
