@@ -7,7 +7,6 @@ class Palheta:
         self.__x = 0
         self.__y = 0
         self.__comprimento = 100
-        self.__tangente = 0
         self.__alvo = None
         self.__pulling = False
 
@@ -29,9 +28,9 @@ class Palheta:
     def seleciona_com_palheta(self, time, pos):
         for i in time:
             a, b = pos
-            i.body.angle = ((a - 20, b - 20) - i.body.position).angle
+            i.body.angle = ((a - i.shape.radius, b - i.shape.radius) - i.body.position).angle
             dist = i.shape.point_query(pos).distance
-            if dist - 20 < 0:
+            if dist - i.shape.radius < 0:
                 self.__alvo = i
                 self.__pulling = True
 
@@ -40,9 +39,10 @@ class Palheta:
         if self.__pulling:
             self.__pulling = False
             b = self.__alvo.shape.body
+            raio = self.__alvo.shape.radius
             self.__alvo = None
             x, y = b.position
-            p1x, p1y = Vec2d(x + 20, y + 20)
+            p1x, p1y = Vec2d(x + raio, y + raio)
             p2x, p2y = from_pygame(event.pos, janela)
             impulsex, impulsey = 2 * Vec2d(p1x - p2x, p1y - p2y).rotated(-b.angle)
             if impulsex > 200:

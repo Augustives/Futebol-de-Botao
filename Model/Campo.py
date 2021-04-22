@@ -23,7 +23,7 @@ class Campo():
         self.__turno_atual = 1
         self.__turno_max = 99
 
-        self.__vez, self.__primeira_rodada = 1, True
+        self.__vez = 1
         self.__nao_moveu = True
         self.__gol_mov = 0
 
@@ -50,14 +50,6 @@ class Campo():
     @vez.setter
     def vez(self, value):
         self.__vez = value
-
-    @property
-    def primeira_rodade(self):
-        return self.__primeira_rodada
-
-    @primeira_rodade.setter
-    def primeira_rodade(self, value):
-        self.__primeira_rodada = value
 
     @property
     def nao_moveu(self):
