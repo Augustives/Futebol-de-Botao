@@ -8,7 +8,7 @@ class Goleiro():
         self.__pos_central = [x, y]
         self.__shape = pymunk.Segment(self.__body, (0, 30), (0, -30), 15)
         self.__shape.elasticity = 1
-        self.__limites = [y + 60, y - 100]
+        self.__limites = (y + 60, y - 100)
         self.__imagem = pygame.transform.scale(imagem, [30, 90])
         space.add(self.__body, self.__shape)
 

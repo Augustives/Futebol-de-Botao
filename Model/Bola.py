@@ -39,16 +39,10 @@ class Bola():
     def atrito(self):
         v1, v2 = self.__body.velocity
 
-        if v1 > 0:
-            v1 *= self.__atrito
-        elif v1 < 0:
-            v1 *= self.__atrito
-        if v2 > 0:
-            v2 *= self.__atrito
-        elif v2 < 0:
-            v2 *= self.__atrito
+        v1 *= self.__atrito
+        v2 *= self.__atrito
 
-        if v1 < 0.5 and v1 > -0.5 and v2 < 0.5 and v2 > -0.5:
+        if v1 < 1 and v1 > -1 and v2 < 1 and v2 > -1:
             v1, v2 = 0, 0
 
         self.__body.velocity = v1, v2

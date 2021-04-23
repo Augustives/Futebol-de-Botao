@@ -148,8 +148,9 @@ class ControladorJogo():
                 self.handle_palheta(event, pos)
 
         self.__palheta.desenha_palheta(pos, self.__janela)
-        self.move_goleiro()
-        self.verifica_gol()
+        if not x:
+            self.move_goleiro()
+            self.verifica_gol()
         if self.__campo.time1 is not None and self.__campo.time2 is not None:
             self.__campo.atrito()
         if x:
