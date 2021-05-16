@@ -26,6 +26,8 @@ class JanelaEscolhaTime:
         self.__janela.blit(self.__bg, (0, 0))
         self.__botaoTime1.desenha_botao(self.__janela)
         self.__botaoTime2.desenha_botao(self.__janela)
+        self.__janela.blit((pygame.transform.scale(pygame.image.load("./imagens/titulo2.png").convert(), [625, 200])),
+                           (400, 100))
 
     def check_events(self):
         pos = pygame.mouse.get_pos()
