@@ -39,11 +39,12 @@ class ControladorJogo():
         self.__telaJogo = JanelaJogo(self.__janela)
 
     def verifica_gol(self):
-        if self.__campo.gol.verifica_gol(self.__campo.bola) == 1:
+        foi_gol = self.__campo.gol.verifica_gol(self.__campo.bola)
+        if foi_gol == 1:
             self.reset()
             self.__telaJogo.placar.incrementa(2)
             self.__campo.gols2 += 1
-        elif self.__campo.gol.verifica_gol(self.__campo.bola) == 2:
+        elif foi_gol == 2:
             self.reset()
             self.__telaJogo.placar.incrementa(1)
             self.__campo.gols1 += 1
@@ -61,7 +62,8 @@ class ControladorJogo():
 
     def passa_vez(self, event):
         if event.UI == 'VEZ':
-            if not self.__campo.parado():
+            parado = self.__campo.parado()
+            if not parado:
                 self.__telaJogo.notifica_parado = True
             else:
                 self.__campo.vez += 1

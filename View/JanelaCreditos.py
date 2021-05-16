@@ -14,6 +14,7 @@ class JanelaCreditos:
         self.__janela.fill((255, 255, 255))
         self.__janela.blit(self.__bg, (0, 0))
         self.__botaoVoltar.desenha_botao(self.__janela)
+        self.__janela.blit(pygame.image.load("./imagens/creditos.png"), (225, 100))
 
     def check_events(self):
         for event in pygame.event.get():

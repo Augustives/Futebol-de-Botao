@@ -54,5 +54,3 @@ class Palheta:
             elif impulsey < -200:
                 impulsey = -200
             b.apply_impulse_at_local_point((impulsex, impulsey))
-
-
