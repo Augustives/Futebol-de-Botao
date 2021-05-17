@@ -47,7 +47,7 @@ class JanelaJogo:
         self.__janela.blit(notifica2, (55, 270))
 
     def notifica_vencedor(self, string):
-        font = pygame.font.Font('./fonts/8-BIT.TTF', 25)
+        font = pygame.font.Font('./fonts/8-BIT.TTF', 10)
         notifica1 = font.render(string, 1, (0, 0, 0))
         self.__janela.blit(notifica1, (55, 250))
 
