@@ -2,6 +2,7 @@ import pygame
 from pymunk.pygame_util import *
 from pymunk.vec2d import Vec2d
 
+
 class Palheta:
     def __init__(self):
         self.__x = 0

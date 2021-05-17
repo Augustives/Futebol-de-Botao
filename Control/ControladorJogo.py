@@ -34,6 +34,7 @@ class ControladorJogo():
 
     def reset_game(self):
         self.__campo = Campo()
+        self.__campo.colisao_campo()
         self.__telaEscolhe = JanelaEscolhaTime(self.__janela)
         self.__telaTurnos = JanelaEscolhaTurno(self.__janela)
         self.__telaJogo = JanelaJogo(self.__janela)
