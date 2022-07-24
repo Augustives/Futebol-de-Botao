@@ -8,9 +8,12 @@ from View.IndicadorTurnos import IndicadorTurnos
 class JanelaJogo:
     def __init__(self, janela):
         self.__janela = janela
+
+        # Texto aqui
         self.__botaoVoltar = BotaoMenu(90, 620, 250, 80, "Voltar", 20)
         self.__botaoVez = BotaoMenu(90, 520, 250, 80, "Passar Turno", 20)
         self.__placar = Placar(40, 100, 350, 60, "", "")
+
         self.__indicadorTurnos = IndicadorTurnos(115, 40, 200, 50)
         self.__notifica_parado = False
 
@@ -41,8 +44,11 @@ class JanelaJogo:
 
     def notifica_movimento(self):
         font = pygame.font.Font('./fonts/8-BIT.TTF', 15)
+        
+        # Texto aqui
         notifica1 = font.render('Espere os peoes e bolas', 1, (0, 0, 0))
         notifica2 = font.render('    estarem parados', 1, (0, 0, 0))
+        
         self.__janela.blit(notifica1, (55, 250))
         self.__janela.blit(notifica2, (55, 270))
 

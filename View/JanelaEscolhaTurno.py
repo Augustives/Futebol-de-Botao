@@ -1,6 +1,7 @@
 import pygame
 import sys
 from View.BotaoMenu import BotaoMenu
+from View.Texto import Texto
 
 
 class JanelaEscolhaTurno:
@@ -20,8 +21,10 @@ class JanelaEscolhaTurno:
         self.__janela.blit(self.__bg, (0, 0))
         self.__botaoTurnos10.desenha_botao(self.__janela)
         self.__botaoTurnos20.desenha_botao(self.__janela)
-        self.__janela.blit((pygame.transform.scale(pygame.image.load("./imagens/titulo3.png").convert(), [625, 200])),
-                           (400, 100))
+
+        # Texto aqui
+        titulo = Texto('ESCOLHA DE TURNO', 64, 700, 200, self.__janela)
+        titulo.desenha_texto()
 
     def check_events(self):
         pos = pygame.mouse.get_pos()

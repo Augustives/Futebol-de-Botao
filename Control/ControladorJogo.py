@@ -1,11 +1,12 @@
 import pygame
-from View.MenuPrincipal import MenuPrincipal
-from View.JanelaJogo import JanelaJogo
-from View.JanelaCreditos import JanelaCreditos
 from Model.Campo import Campo
 from Model.Palheta import Palheta
+from View.MenuPrincipal import MenuPrincipal
+from View.JanelaJogo import JanelaJogo
 from View.JanelaEscolhaTime import JanelaEscolhaTime
 from View.JanelaEscolhaTurno import JanelaEscolhaTurno
+from View.JanelaIdioma import JanelaIdioma
+from View.JanelaCreditos import JanelaCreditos
 
 
 class ControladorJogo():
@@ -23,9 +24,8 @@ class ControladorJogo():
         self.__telaEscolhe = JanelaEscolhaTime(self.__janela)
         self.__telaTurnos = JanelaEscolhaTurno(self.__janela)
         self.__telaJogo = JanelaJogo(self.__janela)
+        self.__telaIdioma = JanelaIdioma(self.__janela)
         self.__telaCreditos = JanelaCreditos(self.__janela)
-
-
 
     def desenha_janela(self, x, y):
         self.__janela = pygame.display.set_mode((x, y))
@@ -74,7 +74,6 @@ class ControladorJogo():
                 self.__campo.nao_moveu = True
                 self.__telaJogo.notifica_parado = False
                 self.__telaJogo.indicadorTurnos.incrementa()
-
 
     def handle_palheta(self, event, pos):
         if self.__campo.time1 is not None and self.__campo.time2 is not None:
@@ -135,6 +134,8 @@ class ControladorJogo():
             self.set_times()
             self.set_max_turnos()
             self.__view_atual = "JOGO"
+        elif event.UI == 'LANG':
+            self.__view_atual = 'LANG'
         elif event.UI == 'CRED':
             self.__view_atual = "CRED"
 
@@ -159,8 +160,6 @@ class ControladorJogo():
         if x:
             self.__telaJogo.notifica_vencedor(y)
 
-
-
     def draw_view(self):
         if self.__view_atual == "MP":
             self.__menuPrincipal.desenha_mp()
@@ -175,10 +174,12 @@ class ControladorJogo():
             self.__telaJogo.desenha_jogo()
             self.__campo.desenha_campo(self.__janela)
             self.__telaJogo.check_events()
+        elif self.__view_atual == 'LANG':
+            self.__telaIdioma.desenha_escolha()
+            self.__telaIdioma.check_events()
         elif self.__view_atual == "CRED":
             self.__telaCreditos.desenha_creditos()
             self.__telaCreditos.check_events()
-
 
     def comeca(self):
         while True:

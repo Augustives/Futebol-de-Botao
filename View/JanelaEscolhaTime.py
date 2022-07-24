@@ -1,14 +1,18 @@
 import pygame
 import sys
 from View.BotaoMenu import BotaoMenu
+from View.Texto import Texto
 
 
 class JanelaEscolhaTime:
     def __init__(self, janela):
         self.__janela = janela
         self.__bg = pygame.image.load("./imagens/bg.png")
+
+        # Texto aqui
         self.__botaoTime1 = BotaoMenu(600, 450, 250, 100, "Fig", 30)
         self.__botaoTime2 = BotaoMenu(600, 575, 250, 100, "Ava", 30)
+
         self.__num_escolhas = 0
         self.__escolha1 = None
         self.__escolha2 = None
@@ -26,8 +30,10 @@ class JanelaEscolhaTime:
         self.__janela.blit(self.__bg, (0, 0))
         self.__botaoTime1.desenha_botao(self.__janela)
         self.__botaoTime2.desenha_botao(self.__janela)
-        self.__janela.blit((pygame.transform.scale(pygame.image.load("./imagens/titulo2.png").convert(), [625, 200])),
-                           (400, 100))
+
+        # Texto aqui
+        titulo = Texto('ESCOLHA DE TIME', 64, 700, 200, self.__janela)
+        titulo.desenha_texto()
 
     def check_events(self):
         pos = pygame.mouse.get_pos()
