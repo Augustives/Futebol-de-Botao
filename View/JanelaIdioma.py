@@ -1,19 +1,20 @@
 import pygame
 import sys
 from View.BotaoMenu import BotaoMenu
+from View.LanguageConfig import LANGUAGE_TEXTS
 from View.Texto import Texto
 
 
 class JanelaIdioma:
-    def __init__(self, janela):
+    def __init__(self, janela, controlador):
         self.__janela = janela
+        self.__controlador = controlador
         self.__bg = pygame.image.load("./imagens/bg.png")
-        self.idioma_atual = 'POR'
         self.__idioma_escolhido = None
         # Texto aqui
-        self.__botaoPor = BotaoMenu(600, 400, 250, 100, "POR", 30)
-        self.__botaoEsp = BotaoMenu(600, 510, 250, 100, "ESP", 30)
-        self.__botaoEng = BotaoMenu(600, 620, 250, 100, "ENG", 30)
+        self.__botaoPor = BotaoMenu(600, 400, 250, 100, "POR", 30, controlador)
+        self.__botaoEsp = BotaoMenu(600, 510, 250, 100, "ESP", 30, controlador)
+        self.__botaoEng = BotaoMenu(600, 620, 250, 100, "ENG", 30, controlador)
 
     @property
     def escolha1(self):
@@ -31,7 +32,7 @@ class JanelaIdioma:
         self.__botaoEng.desenha_botao(self.__janela)
 
         # Texto aqui
-        titulo = Texto('ESCOLHA DE IDIOMA', 64, 700, 200, self.__janela)
+        titulo = Texto(LANGUAGE_TEXTS[self.__controlador.language]["language_selection_title"], 64, 700, 200, self.__janela, self.__controlador)
         titulo.desenha_texto()
 
 
@@ -55,7 +56,7 @@ class JanelaIdioma:
             self.__botaoEng.botao_hover(pos)
 
         if self.__idioma_escolhido is not None:
-            self.idioma_atual = self.__idioma_escolhido
+            self.__controlador.language = self.__idioma_escolhido
             self.__idioma_escolhido = None
             event = pygame.event.Event(pygame.USEREVENT, UI='MP')
             pygame.event.post(event)

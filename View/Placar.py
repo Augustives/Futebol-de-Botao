@@ -1,7 +1,8 @@
 import pygame
 
 class Placar:
-    def __init__(self, x, y, largura, altura, nome1, nome2):
+    def __init__(self, x, y, largura, altura, nome1, nome2, controlador):
+        self.__controlador = controlador
         self.__x, self.__y = x, y
         self.__largura, self.__altura = largura, altura
         self.__nome1 = nome1

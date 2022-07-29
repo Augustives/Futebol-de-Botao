@@ -16,16 +16,17 @@ class ControladorJogo():
         self.desenha_janela(1400, 800)
         self.__clock = pygame.time.Clock()
         self.__view_atual = "MP"
+        self.language = "POR"
 
         self.__campo = Campo()
         self.__campo.colisao_campo()
         self.__palheta = Palheta()
-        self.__menuPrincipal = MenuPrincipal(self.__janela)
-        self.__telaEscolhe = JanelaEscolhaTime(self.__janela)
-        self.__telaTurnos = JanelaEscolhaTurno(self.__janela)
-        self.__telaJogo = JanelaJogo(self.__janela)
-        self.__telaIdioma = JanelaIdioma(self.__janela)
-        self.__telaCreditos = JanelaCreditos(self.__janela)
+        self.__menuPrincipal = MenuPrincipal(self.__janela, self)
+        self.__telaEscolhe = JanelaEscolhaTime(self.__janela, self)
+        self.__telaTurnos = JanelaEscolhaTurno(self.__janela, self)
+        self.__telaJogo = JanelaJogo(self.__janela, self)
+        self.__telaIdioma = JanelaIdioma(self.__janela, self)
+        self.__telaCreditos = JanelaCreditos(self.__janela, self)
 
     def desenha_janela(self, x, y):
         self.__janela = pygame.display.set_mode((x, y))
@@ -35,9 +36,9 @@ class ControladorJogo():
     def reset_game(self):
         self.__campo = Campo()
         self.__campo.colisao_campo()
-        self.__telaEscolhe = JanelaEscolhaTime(self.__janela)
-        self.__telaTurnos = JanelaEscolhaTurno(self.__janela)
-        self.__telaJogo = JanelaJogo(self.__janela)
+        self.__telaEscolhe = JanelaEscolhaTime(self.__janela, self)
+        self.__telaTurnos = JanelaEscolhaTurno(self.__janela, self)
+        self.__telaJogo = JanelaJogo(self.__janela, self)
 
     def verifica_gol(self):
         foi_gol = self.__campo.gol.verifica_gol(self.__campo.bola)

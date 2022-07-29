@@ -1,20 +1,22 @@
 import pygame
 import sys
 from View.BotaoMenu import BotaoMenu
+from View.LanguageConfig import LANGUAGE_TEXTS
 from View.Placar import Placar
 from View.IndicadorTurnos import IndicadorTurnos
 
 
 class JanelaJogo:
-    def __init__(self, janela):
+    def __init__(self, janela, controlador):
         self.__janela = janela
+        self.__controlador = controlador
 
         # Texto aqui
-        self.__botaoVoltar = BotaoMenu(90, 620, 250, 80, "Voltar", 20)
-        self.__botaoVez = BotaoMenu(90, 520, 250, 80, "Passar Turno", 20)
-        self.__placar = Placar(40, 100, 350, 60, "", "")
+        self.__botaoVoltar = BotaoMenu(90, 620, 250, 80, LANGUAGE_TEXTS[self.__controlador.language]["go_back_button"], 20, controlador)
+        self.__botaoVez = BotaoMenu(90, 520, 250, 80, LANGUAGE_TEXTS[self.__controlador.language]["skip_turn_button"], 20, controlador)
+        self.__placar = Placar(40, 100, 350, 60, "", "", controlador)
 
-        self.__indicadorTurnos = IndicadorTurnos(115, 40, 200, 50)
+        self.__indicadorTurnos = IndicadorTurnos(115, 40, 200, 50, controlador)
         self.__notifica_parado = False
 
     @property

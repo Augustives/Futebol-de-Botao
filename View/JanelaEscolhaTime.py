@@ -1,17 +1,19 @@
 import pygame
 import sys
 from View.BotaoMenu import BotaoMenu
+from View.LanguageConfig import LANGUAGE_TEXTS
 from View.Texto import Texto
 
 
 class JanelaEscolhaTime:
-    def __init__(self, janela):
+    def __init__(self, janela, controlador):
         self.__janela = janela
         self.__bg = pygame.image.load("./imagens/bg.png")
+        self.__controlador = controlador
 
         # Texto aqui
-        self.__botaoTime1 = BotaoMenu(600, 450, 250, 100, "Fig", 30)
-        self.__botaoTime2 = BotaoMenu(600, 575, 250, 100, "Ava", 30)
+        self.__botaoTime1 = BotaoMenu(600, 450, 250, 100, "Fig", 30, self.__controlador)
+        self.__botaoTime2 = BotaoMenu(600, 575, 250, 100, "Ava", 30, self.__controlador)
 
         self.__num_escolhas = 0
         self.__escolha1 = None
@@ -32,7 +34,7 @@ class JanelaEscolhaTime:
         self.__botaoTime2.desenha_botao(self.__janela)
 
         # Texto aqui
-        titulo = Texto('ESCOLHA DE TIME', 64, 700, 200, self.__janela)
+        titulo = Texto(LANGUAGE_TEXTS[self.__controlador.language]["pick_team_header"], 64, 700, 200, self.__janela, self.__controlador)
         titulo.desenha_texto()
 
     def check_events(self):

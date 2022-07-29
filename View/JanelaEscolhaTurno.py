@@ -1,15 +1,17 @@
 import pygame
 import sys
 from View.BotaoMenu import BotaoMenu
+from View.LanguageConfig import LANGUAGE_TEXTS
 from View.Texto import Texto
 
 
 class JanelaEscolhaTurno:
-    def __init__(self, janela):
+    def __init__(self, janela, controlador):
         self.__janela = janela
+        self.__controlador = controlador
         self.__bg = pygame.image.load("./imagens/bg.png")
-        self.__botaoTurnos10 = BotaoMenu(600, 450, 250, 100, "10", 30)
-        self.__botaoTurnos20 = BotaoMenu(600, 575, 250, 100, "20", 30)
+        self.__botaoTurnos10 = BotaoMenu(600, 450, 250, 100, "10", 30, controlador)
+        self.__botaoTurnos20 = BotaoMenu(600, 575, 250, 100, "20", 30, controlador)
         self.__escolha_turnos = None
 
     @property
@@ -23,7 +25,7 @@ class JanelaEscolhaTurno:
         self.__botaoTurnos20.desenha_botao(self.__janela)
 
         # Texto aqui
-        titulo = Texto('ESCOLHA DE TURNO', 64, 700, 200, self.__janela)
+        titulo = Texto(LANGUAGE_TEXTS[self.__controlador.language]["select_num_turns_header"], 64, 700, 200, self.__janela, self.__controlador)
         titulo.desenha_texto()
 
     def check_events(self):
